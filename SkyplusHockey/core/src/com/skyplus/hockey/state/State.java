@@ -17,7 +17,7 @@ public abstract class State {
 
     protected State(GameStateManager gsm){
         this.gsm = gsm;
-        cam = new OrthographicCamera(Hockey.WITDH,Hockey.HEIGHT);
+        cam = new OrthographicCamera();
 //        cam.translate(cam.viewportWidth/2,cam.viewportHeight/2);
 //        gamePort = new FillViewport(480,800,cam);
         cam.setToOrtho(true, Hockey.WITDH, Hockey.HEIGHT);
