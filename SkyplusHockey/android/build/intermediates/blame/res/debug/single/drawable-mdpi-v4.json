@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\project_android\\SkyplusHockey\\android\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "D:\\project_android\\SkyplusHockey\\android\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\project_android\\SkyplusHockey.git\\trunk\\SkyplusHockey\\android\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "D:\\project_android\\SkyplusHockey.git\\trunk\\SkyplusHockey\\android\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\AndroidStudioProject\\SkyplusHockey\\android\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "E:\\AndroidStudioProject\\SkyplusHockey\\android\\res\\drawable-mdpi\\ic_launcher.png"
+    }
+]

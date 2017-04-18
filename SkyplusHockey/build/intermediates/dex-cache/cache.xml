@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\project_android\SkyplusHockey.git\trunk\SkyplusHockey\core\build\libs\core-1.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="34bae3a8bc3b0c046629cbe2127debdf292bae19">
+        <dex dex="D:\project_android\SkyplusHockey.git\trunk\SkyplusHockey\android\build\intermediates\pre-dexed\debug\core-1.0_3076ae8512a48b534008f0fcc1d7337c23645513.jar" />
+    </item>
+
+</items>
