@@ -16,7 +16,7 @@ public class MenuState extends State{
 
     public MenuState(GameStateManager gsm) {
         super(gsm);
-        bg = new Texture(Hockey.PATCH+"bg.png");
+        bg = new Texture(Hockey.PATCH+"backGame.png");
         button = new Texture(Hockey.PATCH+"playbtn.png");
     }
 
@@ -36,6 +36,7 @@ public class MenuState extends State{
     @Override
     public void render(SpriteBatch sb) {
         cam.update();
+
         sb.setProjectionMatrix(cam.combined);
         sb.begin();;
         sb.draw(bg,0,0);

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.skyplus.hockey.state.GameStateManager;
 import com.skyplus.hockey.state.MenuState;
 
@@ -14,8 +15,8 @@ import com.skyplus.hockey.state.MenuState;
 
 public class Hockey extends Game {
 
-	public static final int WITDH = 480;
-	public static final int HEIGHT = 800;
+	public static  int WITDH =0;
+	public static  int HEIGHT = 0;
 	public static  String TITLE = "Skys Hockey";
 	public static String PATCH="";
 	SpriteBatch batch;
@@ -29,14 +30,14 @@ public class Hockey extends Game {
 		batch = new SpriteBatch();
 		gms = new GameStateManager();
 
-//		WITDH = Gdx.app.getGraphics().getWidth();
-//		HEIGHT = Gdx.app.getGraphics().getHeight();
+		WITDH = Gdx.app.getGraphics().getWidth();
+		HEIGHT = Gdx.app.getGraphics().getHeight();
 
 		// dua vao kich thuoc mang hinh set duong dan den thu muc hinh anh phu hop
 		PATCH=WITDH+"x"+HEIGHT+"/";
 
 		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.app.log("create","x sssssssssssssssssssssss");
+
 		gms.push(new MenuState(gms));
 	}
 

@@ -1,6 +1,7 @@
 package com.skyplus.hockey.objects;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -26,6 +27,5 @@ public abstract class GameObject {
     // get getTexture
     public  abstract Texture getTexture();
     public abstract Circle getBounds();
-    public abstract Boolean isContain(Rectangle rectangle);
-
+    public abstract void draw(SpriteBatch batch);
 }
