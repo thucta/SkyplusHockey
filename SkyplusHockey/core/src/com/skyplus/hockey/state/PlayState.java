@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.skyplus.hockey.Hockey;
-import com.skyplus.hockey.objects.Background;
 import com.skyplus.hockey.objects.BackgroundGame;
+import com.skyplus.hockey.objects.GameObject;
 import com.skyplus.hockey.objects.Pandle;
 import com.skyplus.hockey.objects.Puck;
 
@@ -36,12 +36,21 @@ public class PlayState extends State {
         backgroud.put("backgroud",new Texture(Hockey.PATCH+"backGame.png"));
         backgroud.put("bg_right",new Texture(Hockey.PATCH+"bg_right.png"));
         backgroud.put("bg_left",new Texture(Hockey.PATCH+"bg_left.png"));
-        backgroud.put("bg_top",new Texture(Hockey.PATCH+"bg_top.png"));
-        backgroud.put("bg_bottom",new Texture(Hockey.PATCH+"bg_bottom.png"));
+        ;
         backgroud.put("bg_right_1",new Texture(Hockey.PATCH+"bg_left.png"));
         backgroud.put("bg_left_1",new Texture(Hockey.PATCH+"bg_right.png"));
-        backgroud.put("bg_top_1",new Texture(Hockey.PATCH+"bg_top.png"));
-        backgroud.put("bg_bottom_1",new Texture(Hockey.PATCH+"bg_bottom.png"));
+
+        backgroud.put("bg_top_right",new Texture(Hockey.PATCH+"bg_top.png"));
+        backgroud.put("bg_top_left",new Texture(Hockey.PATCH+"bg_top.png"));
+        backgroud.put("bg_top_right_light",new Texture(Hockey.PATCH+"bg_top_light.png"));
+        backgroud.put("bg_top_left_light",new Texture(Hockey.PATCH+"bg_top_light.png"));
+
+        backgroud.put("bg_bottom_right",new Texture(Hockey.PATCH+"bg_top.png"));
+        backgroud.put("bg_bottom_left",new Texture(Hockey.PATCH+"bg_top.png"));
+        backgroud.put("bg_bottom_right_light",new Texture(Hockey.PATCH+"bg_top_light.png"));
+        backgroud.put("bg_bottom_left_light",new Texture(Hockey.PATCH+"bg_top_light.png"));
+
+
         background = new BackgroundGame(Hockey.WITDH,Hockey.HEIGHT,backgroud);
 
         pandle_pink = new Pandle((int) (cam.viewportWidth/ 2), (int) (cam.viewportHeight - 100),new Texture(Hockey.PATCH+"pandle.png"),new Texture(Hockey.PATCH+"pandle_l.png"));
@@ -72,13 +81,13 @@ public class PlayState extends State {
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                pandle_pink.move(screenX, screenY);
+//                pandle_pink.move(screenX, screenY);
 
-//                if (screenY < Hockey.HEIGHT / 2) {
-//                    pandle_green.move(screenX, screenY);
-//                } else {
-//                    pandle_pink.move(screenX, screenY);
-//                }
+                if (screenY < Hockey.HEIGHT / 2) {
+                    pandle_green.move(screenX, screenY);
+                } else {
+                    pandle_pink.move(screenX, screenY);
+                }
                 return false;
             }
 
@@ -90,13 +99,13 @@ public class PlayState extends State {
             @Override
             public boolean touchDragged(int screenX, int screenY, int pointer) {
 
-                pandle_pink.move(screenX, screenY);
+//                pandle_pink.move(screenX, screenY);
 
-//                if (screenY < Hockey.HEIGHT / 2) {
-//                    pandle_green.move(screenX, screenY);
-//                } else {
-//                    pandle_pink.move(screenX, screenY);
-//                }
+                if (screenY < Hockey.HEIGHT / 2) {
+                    pandle_green.move(screenX, screenY);
+                } else {
+                    pandle_pink.move(screenX, screenY);
+                }
                 return false;
             }
 
@@ -113,8 +122,8 @@ public class PlayState extends State {
 
 
 
-        ckeckHit(pandle_pink,puck,background);
         ckeckHit(pandle_green,puck,background);
+        ckeckHit(pandle_pink,puck,background);
 
     }
 
@@ -124,7 +133,7 @@ public class PlayState extends State {
         pandle_pink.update(dt);
         pandle_green.update(dt);
         puck.update(dt);
-
+        background.update(pandle_pink,pandle_green,puck);
     }
 
 
@@ -151,7 +160,7 @@ public class PlayState extends State {
 
     public void ckeckHit(Pandle pandle, Puck puck,BackgroundGame background){
 
-        pandle.hitsPuck(puck,background);
+        pandle.hits(puck);
         puck.hits(pandle);
 
         double distance = Math.sqrt(Vector2.dst2(puck.getX(),puck.getY(),pandle.getX(),pandle.getY()));
@@ -165,13 +174,17 @@ public class PlayState extends State {
         }
 
     }
+    /*
+        Giới hạn không cho di chuyển ra khởi màng hình
+    **/
+
+
+
+
     @Override
     public void resize(int width, int height) {
 //       gamePort.update(width,height);
     }
-
-
-
 
     @Override
     public void dispose() {

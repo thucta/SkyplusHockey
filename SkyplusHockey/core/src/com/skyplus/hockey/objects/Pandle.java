@@ -1,17 +1,17 @@
 package com.skyplus.hockey.objects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
+import com.skyplus.hockey.Hockey;
 
 
 /**
- *
  * Created by TruongNN on 3/24/2017.
- *
  */
 
 public class Pandle extends GameObject {
@@ -19,17 +19,24 @@ public class Pandle extends GameObject {
     private Texture body_dark;
     private Texture body_light;
 
+
+
     private Vector2 postion;
     private Circle bounds;
 
     public static float speed = 7000;
+
+
     public static float elapsed = 0.01f;
 
     private Boolean moving = false;
     private Vector2 end = new Vector2(0, 0);
+
+
+
     private static float LIMIT = 20;
     private Vector2d velocity;
-    private static long timer =0;
+    private long timer = 0;
 
 
     public Pandle(int x, int y, Texture body1, Texture body2) {
@@ -38,17 +45,20 @@ public class Pandle extends GameObject {
         this.body_light = body2;
         body = new Sprite(body1);
         bounds = new Circle(postion.x, postion.y, getWitdh() / 2);
-        velocity = new Vector2d(0,0);
+        velocity = new Vector2d(0, 0);
     }
 
     @Override
     public void draw(SpriteBatch batch) {
-        body.setPosition(postion.x-body.getWidth()/2,postion.y-body.getHeight()/2);
+        body.setPosition(postion.x - body.getWidth() / 2, postion.y - body.getHeight() / 2);
         body.draw(batch);
     }
+
     @Override
     public void move(int x, int y) {
         end.set(x, y);
+        end.x = Math.min(Math.max(end.x, getWitdh()/2+14),Hockey.WITDH-getWitdh()/2-14 );
+        end.y = Math.min(Math.max(end.y, getHeight()/2+14),Hockey.HEIGHT-getWitdh()/2-14 );
         moving = true;
     }
 
@@ -60,7 +70,7 @@ public class Pandle extends GameObject {
         Vector2 start = new Vector2(postion.x, postion.y);
 
         // khoang cach giua 2 diem trong mat phang, chua lay can ban 2
-        double distance = Vector2.dst2(start.x,start.y,end.x,end.y);
+        double distance = Vector2.dst2(start.x, start.y, end.x, end.y);
         double distance2 = Math.sqrt(distance);
 
         // xac dinh huong di
@@ -70,20 +80,29 @@ public class Pandle extends GameObject {
         double x = direction.x * speed * elapsed;
         double y = direction.y * speed * elapsed;
 
-        if (moving) {
-            setVelocity();  // set van toc cho pandle
-            postion.x += x;
-            postion.y += y;
-
-
-            if (Vector2.dst2(start.x, start.y, postion.x, postion.y) >= distance) {
-                postion.set(end);
-                moving = false;
-            }
+        setVelocity();  // set van toc cho pandle
+        postion.x += x;
+        postion.y += y;
+        if (Vector2.dst2(start.x, start.y, postion.x, postion.y) >= distance) {
+            postion.set(end);
+//            moving = false;
         }
+//
+//        if (moving) {
+//            setVelocity();  // set van toc cho pandle
+//            Gdx.app.log("sau",velocity+" " );
+//            postion.x += x;
+//            postion.y += y;
+//
+//            if (Vector2.dst2(start.x, start.y, postion.x, postion.y) >= distance) {
+//                postion.set(end);
+//                moving = false;
+//            }
+//        }
 
 
     }
+
     @Override
     public Boolean hits(Circle circle) {
 
@@ -124,27 +143,26 @@ public class Pandle extends GameObject {
 
     public Boolean hitEdge(BackgroundGame background) {
         Boolean flag = false;
-        for (BackgroundGame.Edge edge : background.getListEdge()){
-            if (Intersector.overlaps(getBounds(), edge.getBound())){
-                edge.setBody(true);
+        for (BackgroundGame.Edge edge : background.getListEdge()) {
+            if (Intersector.overlaps(getBounds(), edge.getBound())) {
+                edge.setBody(edge.getBody_light());
                 flag = true;
-            }else {
-                edge.setBody(false);
+            } else {
+                edge.setBody(edge.getBody_dark());
             }
 
         }
         return flag;
     }
 
-    public Boolean hitsPuck(Puck puck,BackgroundGame bg){
+    public Boolean hits(Puck puck) {
 
-        if(Intersector.overlaps(puck.getBounds(),getBounds()) || hitEdge(bg)){
+        if (Intersector.overlaps(puck.getBounds(), getBounds()) ) {
             body.setTexture(body_light);
             timer = System.currentTimeMillis();
 
         }
-
-        else if(System.currentTimeMillis()-timer >100) {
+        else if (System.currentTimeMillis() - timer > 100) {
             body.setTexture(body_dark);
         }
         return false;
@@ -158,11 +176,34 @@ public class Pandle extends GameObject {
     public Vector2d getVelocity() {
         return velocity;
     }
+
+    public Texture getBody_dark() {
+        return body_dark;
+    }
+
+    public void setBody_dark(Texture body_dark) {
+        this.body_dark = body_dark;
+    }
+
+    public Texture getBody_light() {
+        return body_light;
+    }
+
+    public void setBody_light(Texture body_light) {
+        this.body_light = body_light;
+    }
+    public void setPostion(float x ,float y) {
+        this.postion.y = x;
+        this.postion.y = y;
+    }
     public Vector2 getPostion() {
         return this.postion;
     }
 
     public void setVelocity() {
-        velocity.set((end.x-postion.x)*2,(end.x-postion.x)*2);
+        velocity.set((end.x - postion.x)*3, (end.y - postion.y)*3);
+    }
+    public void setBody(Texture body) {
+        this.body.setRegion(body);
     }
 }

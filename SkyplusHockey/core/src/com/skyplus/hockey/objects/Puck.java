@@ -67,12 +67,32 @@ public class Puck extends  GameObject {
     public Boolean hits(Pandle pandle) {
         if(Intersector.overlaps(getBounds(),pandle.getBounds())){
 
+
+//            velocity.x += pandle.getVelocity().x;
+//            velocity.y += pandle.getVelocity().y;
+            vectorTemp.x = pandle.getVelocity().x;
+            vectorTemp.y = pandle.getVelocity().y;
+//            pandle.setVelocity();
+//            Gdx.app.log("sau", pandle.getVelocity()+" " );
             //xac ding huong va cham
             Vector2d direction = new Vector2d(postion.x- pandle.getX(), postion.y- pandle.getY());
 
-            velocity =  pandle.getVelocity().proj(direction).plus(velocity.proj(direction).times(-1.5f)
+//            if(!velocity.hasSameDirection(pandle.getPostion())){
+//                Gdx.app.log("sau", pandle.getVelocity()+" " );
+//                velocity.x += pandle.getVelocity().x*2/3 ;
+//                velocity.y += pandle.getVelocity().y*2/3;
+//            }
+
+            velocity =  vectorTemp.proj(direction).plus(velocity.proj(direction).times(-1.5f)
                     .plus(velocity.proj(new Vector2d(direction.y, -direction.x)))).times(1.2f);
 
+
+            /*
+                 F = -F => a1m1 = - a2m2 (m1 = 2/3 m2)    (m1: khoi luong cua puck , m2 : khoi luong cua pandle)
+                 => do giam van toc cua puck khi va cham vao cac dia
+            */
+            velocity.x += velocity.x*-2/3 ;
+            velocity.y += velocity.y/-2/3;
 
             return true;
         }
