@@ -6,46 +6,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="dd1791a6-5952-44db-ae78-145606bcecf8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/Background.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/assets/480x800/bg_right.png" afterPath="$PROJECT_DIR$/android/assets/480x800/bg_right.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/assets/480x800/pandle.png" afterPath="$PROJECT_DIR$/android/assets/480x800/pandle.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/assets/480x800/pandle_1.png" afterPath="$PROJECT_DIR$/android/assets/480x800/pandle_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/assets/480x800/pandle_l.png" afterPath="$PROJECT_DIR$/android/assets/480x800/pandle_l.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/assets/480x800/pandle_l_1.png" afterPath="$PROJECT_DIR$/android/assets/480x800/pandle_l_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/assets/480x800/puck.png" afterPath="$PROJECT_DIR$/android/assets/480x800/puck.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/bg_right.png" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/bg_right.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/bg_top.png" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/bg_top.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/pandle.png" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/pandle.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/pandle_1.png" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/pandle_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/pandle_l.png" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/pandle_l.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/pandle_l_1.png" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/pandle_l_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/puck.png" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/480x800/puck.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/android/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/mergeJavaRes/debug/jars/2/1f/main.jar" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/mergeJavaRes/debug/jars/2/1f/main.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/outputs/apk/android-debug-unaligned.apk" afterPath="$PROJECT_DIR$/android/build/outputs/apk/android-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/outputs/apk/android-debug.apk" afterPath="$PROJECT_DIR$/android/build/outputs/apk/android-debug.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/skyplus/hockey/Hockey.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/skyplus/hockey/Hockey.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/skyplus/hockey/objects/GameObject.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/skyplus/hockey/objects/GameObject.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/skyplus/hockey/objects/Pandle.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/skyplus/hockey/objects/Pandle.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/skyplus/hockey/objects/Puck.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/skyplus/hockey/objects/Puck.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/skyplus/hockey/state/PlayState$1.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/skyplus/hockey/state/PlayState$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/skyplus/hockey/state/PlayState.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/skyplus/hockey/state/PlayState.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/skyplus/hockey/Hockey.java" afterPath="$PROJECT_DIR$/core/src/com/skyplus/hockey/Hockey.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/skyplus/hockey/config/Config.java" afterPath="$PROJECT_DIR$/core/src/com/skyplus/hockey/config/Config.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/BackgroundGame.java" afterPath="$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/BackgroundGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/GameObject.java" afterPath="$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/GameObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/Pandle.java" afterPath="$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/Pandle.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/Puck.java" afterPath="$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/Puck.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/skyplus/hockey/state/PlayState.java" afterPath="$PROJECT_DIR$/core/src/com/skyplus/hockey/state/PlayState.java" />
     </list>
     <ignored path="SkyplusHockey.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,15 +50,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Puck.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Puck.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/Puck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="96" column="42" selection-start-line="96" selection-start-column="42" selection-end-line="96" selection-end-column="42" />
+            <state relative-caret-position="250">
+              <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5404#5405#0" expanded="true" />
-                <element signature="e#5436#5437#0" expanded="true" />
+                <element signature="e#5405#5406#0" expanded="true" />
+                <element signature="e#5437#5438#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -135,7 +108,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BackgroundGame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BackgroundGame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/BackgroundGame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2486">
@@ -2522,7 +2495,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../my-gdx-game-master" />
-    <property name="device.picker.selection" value="97593900" />
+    <property name="device.picker.selection" value="AVD_GalaxyNexus_ToolsForApacheCordova" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -2924,7 +2897,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25506556" sideWeight="0.5064935" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45649582" sideWeight="0.49694657" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36233613" sideWeight="0.4935065" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.74493444" sideWeight="0.4935065" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -3274,27 +3247,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/BackgroundGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2486">
-          <caret line="153" column="21" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="21" />
-          <folding>
-            <element signature="e#2528#2529#0" expanded="true" />
-            <element signature="e#2558#2559#0" expanded="true" />
-            <element signature="e#2615#2616#0" expanded="true" />
-            <element signature="e#2653#2654#0" expanded="true" />
-            <element signature="e#5547#5548#0" expanded="true" />
-            <element signature="e#5593#5594#0" expanded="true" />
-            <element signature="e#5628#5629#0" expanded="true" />
-            <element signature="e#5675#5676#0" expanded="true" />
-            <element signature="e#6044#6045#0" expanded="true" />
-            <element signature="e#6080#6081#0" expanded="true" />
-            <element signature="e#6124#6125#0" expanded="true" />
-            <element signature="e#6166#6167#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/skyplus/hockey/Hockey.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -3325,12 +3277,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/Puck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="96" column="42" selection-start-line="96" selection-start-column="42" selection-end-line="96" selection-end-column="42" />
+        <state relative-caret-position="250">
+          <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5404#5405#0" expanded="true" />
-            <element signature="e#5436#5437#0" expanded="true" />
+            <element signature="e#5405#5406#0" expanded="true" />
+            <element signature="e#5437#5438#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/skyplus/hockey/objects/BackgroundGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2486">
+          <caret line="153" column="21" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="21" />
+          <folding>
+            <element signature="e#2528#2529#0" expanded="true" />
+            <element signature="e#2558#2559#0" expanded="true" />
+            <element signature="e#2615#2616#0" expanded="true" />
+            <element signature="e#2653#2654#0" expanded="true" />
+            <element signature="e#5547#5548#0" expanded="true" />
+            <element signature="e#5593#5594#0" expanded="true" />
+            <element signature="e#5628#5629#0" expanded="true" />
+            <element signature="e#5675#5676#0" expanded="true" />
+            <element signature="e#6044#6045#0" expanded="true" />
+            <element signature="e#6080#6081#0" expanded="true" />
+            <element signature="e#6124#6125#0" expanded="true" />
+            <element signature="e#6166#6167#0" expanded="true" />
           </folding>
         </state>
       </provider>
