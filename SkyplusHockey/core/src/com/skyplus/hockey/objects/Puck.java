@@ -9,49 +9,52 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Timer;
 import com.skyplus.hockey.Hockey;
+import com.skyplus.hockey.config.Config;
 
 import java.util.Date;
+import java.util.Map;
 
 
 /**
  * Created by TruongNN on 3/24/2017.
  */
 
-public class Puck extends  GameObject {
+public class Puck extends GameObject {
 
-    private Sprite body ;
+    private Sprite body;
     private Vector2 postion;
     private Vector2d velocity;
     private Circle bounds;
+
+    private Map<String,BackgroundGame.Edge> listEdge;
 
     private int radius;
     private static float speed = 0.98f;
     private static float LIMIT = 25;
     private static float LIMIT_STOP = 0.3f;
+    private int withEdge = 14;
+    int leftBound = 130;
+    int rightBound = Hockey.WITDH - 130;
 
 
 
 
-    public void setVelocity(Vector2d velocity) {
-        this.velocity = velocity;
-    }
-
-    public Puck(int x, int y){
-        postion = new Vector2(x,y);
-       initator();
+    public Puck(int x, int y, Map<String,BackgroundGame.Edge> listEdge) {
+        this.listEdge = listEdge;
+        postion = new Vector2(x, y);
+        initator();
 
     }
 
     private void initator() {
-        velocity = new Vector2d(0,0);
-        body = new Sprite(new Texture(Hockey.PATCH+"puck.png"));
+        velocity = new Vector2d(0, 0);
+        body = new Sprite(new Texture(Hockey.PATCH + "puck.png"));
 
         // tru ban kinh cua puck de ve ngay tam duong tron
-        body.setPosition(postion.x-body.getWidth()/2,postion.y-body.getWidth()/2);
+        body.setPosition(postion.x - body.getWidth() / 2, postion.y - body.getWidth() / 2);
 
-        bounds = new Circle(postion.x,postion.y,body.getWidth()/2);
-        radius = (int) (body.getWidth()/2);
-
+        bounds = new Circle(postion.x, postion.y, body.getWidth() / 2);
+        radius = (int) (body.getWidth() / 2);
     }
 
     public void setPostion(Vector2 postion) {
@@ -63,36 +66,35 @@ public class Puck extends  GameObject {
         return velocity;
     }
 
-    public  Vector2d vectorTemp = new Vector2d(0,0);
+    public Vector2d vectorTemp = new Vector2d(0, 0);
+    // Ham va cham voi pandles
     public Boolean hits(Pandle pandle) {
-        if(Intersector.overlaps(getBounds(),pandle.getBounds())){
+        if (Intersector.overlaps(getBounds(), pandle.getBounds())) {
 
-
-//            velocity.x += pandle.getVelocity().x;
-//            velocity.y += pandle.getVelocity().y;
+            // nếu khônng sử dụng biến tạm thì sau khi kết thúc hàm giá trị của
             vectorTemp.x = pandle.getVelocity().x;
             vectorTemp.y = pandle.getVelocity().y;
-//            pandle.setVelocity();
-//            Gdx.app.log("sau", pandle.getVelocity()+" " );
-            //xac ding huong va cham
-            Vector2d direction = new Vector2d(postion.x- pandle.getX(), postion.y- pandle.getY());
 
-//            if(!velocity.hasSameDirection(pandle.getPostion())){
+
+            //xac ding huong va cham
+            Vector2d direction = new Vector2d(postion.x - pandle.getX(), postion.y - pandle.getY());
+
+//            if(!velocity.hasSameDirection(pandle.getPosition())){
 //                Gdx.app.log("sau", pandle.getVelocity()+" " );
 //                velocity.x += pandle.getVelocity().x*2/3 ;
 //                velocity.y += pandle.getVelocity().y*2/3;
 //            }
 
-            velocity =  vectorTemp.proj(direction).plus(velocity.proj(direction).times(-1.5f)
-                    .plus(velocity.proj(new Vector2d(direction.y, -direction.x)))).times(1.2f);
+            velocity = vectorTemp.proj(direction).plus(velocity.proj(direction).times(-1.5f)
+                    .plus(velocity.proj(new Vector2d(direction.y, -direction.x)))).times(1.5f);
 
 
             /*
                  F = -F => a1m1 = - a2m2 (m1 = 2/3 m2)    (m1: khoi luong cua puck , m2 : khoi luong cua pandle)
                  => do giam van toc cua puck khi va cham vao cac dia
             */
-            velocity.x += velocity.x*-2/3 ;
-            velocity.y += velocity.y/-2/3;
+            velocity.x += velocity.x *-2/3;
+            velocity.y += velocity.y *-2/3;
 
             return true;
         }
@@ -105,10 +107,12 @@ public class Puck extends  GameObject {
     }
 
     @Override
-    public void move(int x,int y) {
+    public void move(float x, float y) {
 
     }
 
+
+    // update trang thai cho opuck bao gom vi tri, body,...
     @Override
     public void update(float delta) {
         velocityLimit();
@@ -119,35 +123,43 @@ public class Puck extends  GameObject {
 
 //        Gdx.app.log("Position","x " + velocity );
 
-        if(postion.x <= radius){
-            velocity.x = Math.abs(velocity.x); //bounce
-            postion.x = radius;
+        // va cham voi canh phai
+        if (Intersector.overlaps(getBounds(), listEdge.get(Config.EDGE_RIGHT_TOP).getBound())
+                                    || Intersector.overlaps(getBounds(),listEdge.get(Config.EDGE_RIGHT_BOTTOM).getBound())) {
+            velocity.x = Math.abs(velocity.x);
+            postion.x = radius + withEdge;
         }
-
-        // bounce off right wall
-        if(postion.x >= Hockey.WITDH - radius){
+        // va cham voi canh trai
+        else if (Intersector.overlaps(getBounds(),listEdge.get(Config.EDGE_LEFT_TOP).getBound())
+                                    || Intersector.overlaps(getBounds(),listEdge.get(Config.EDGE_LEFT_BOTTOM).getBound())) {
             velocity.x = -Math.abs(velocity.x);
-            postion.x = Hockey.WITDH - radius;
+            postion.x = Hockey.WITDH - radius - withEdge;
         }
 
-        // bounce off bottom
-        if(postion.y <= radius){
-                velocity.y = Math.abs(velocity.y);
-                postion.y = radius;
+        // Va cham voi top
+        if  (Intersector.overlaps(getBounds(),listEdge.get(Config.EDGE_TOP_RIGHT).getBound())
+                                    || Intersector.overlaps(getBounds(),listEdge.get(Config.EDGE_TOP_LEFT).getBound())) {
 
+            velocity.y = Math.abs(velocity.y);
+            postion.y = radius + withEdge;
 
         }
-
         // bounce off top for Player 1 or bottom for Player 2
-        if(postion.y >= Hockey.HEIGHT - radius){
+        else if (Intersector.overlaps(getBounds(),listEdge.get(Config.EDGE_BOTTOM_RIGHT).getBound())
+                                    || Intersector.overlaps(getBounds(),listEdge.get(Config.EDGE_BOTTOM_LEFT).getBound())) {
             velocity.y = -Math.abs(velocity.y);
-            postion.y = Hockey.HEIGHT - radius;
+            postion.y = Hockey.HEIGHT - radius - withEdge;
         }
-
 
     }
 
-    public void setPosition(float x,float y){
+    public void reLoadGame(float x,float y){
+        setPosition(x,y);
+        setVelocity(0,0);
+    }
+
+
+    public void setPosition(float x, float y) {
         postion.x = x;
         postion.y = y;
     }
@@ -182,30 +194,33 @@ public class Puck extends  GameObject {
         return body.getTexture();
     }
 
+    public void setVelocity(float x ,float y) {
+        this.velocity.y =y;
+        this.velocity.x = x;
+    }
     @Override
     public Circle getBounds() {
-        bounds.set(postion.x,postion.y,body.getWidth()/2);
+        bounds.set(postion.x, postion.y, body.getWidth() / 2);
         return bounds;
     }
 
 
-
     @Override
     public void draw(SpriteBatch batch) {
-        body.setPosition(postion.x-body.getWidth()/2,postion.y-body.getHeight()/2);
+        body.setPosition(postion.x - body.getWidth() / 2, postion.y - body.getHeight() / 2);
         body.draw(batch);
     }
 
 
     // gioi han van toc cua puck
-    public void velocityLimit(){
-        velocity.x = Math.min(Math.max(velocity.x,-LIMIT), LIMIT);
-        velocity.y =Math.min(Math.max(velocity.y,-LIMIT), LIMIT);
+    public void velocityLimit() {
+        velocity.x = Math.min(Math.max(velocity.x, -LIMIT), LIMIT);
+        velocity.y = Math.min(Math.max(velocity.y, -LIMIT), LIMIT);
 
-        if(velocity.x >-LIMIT_STOP && velocity.x < LIMIT_STOP){
+        if (velocity.x > -LIMIT_STOP && velocity.x < LIMIT_STOP) {
             velocity.x = 0;
         }
-        if(velocity.y >-LIMIT_STOP && velocity.y <LIMIT_STOP){
+        if (velocity.y > -LIMIT_STOP && velocity.y < LIMIT_STOP) {
             velocity.y = 0;
         }
     }

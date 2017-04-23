@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.skyplus.hockey.Hockey;
+import com.skyplus.hockey.config.Config;
 import com.skyplus.hockey.objects.BackgroundGame;
-import com.skyplus.hockey.objects.GameObject;
 import com.skyplus.hockey.objects.Pandle;
 import com.skyplus.hockey.objects.Puck;
 
@@ -33,29 +33,39 @@ public class PlayState extends State {
 
     private void initator() {
         backgroud = new HashMap<String, Texture>();
-        backgroud.put("backgroud",new Texture(Hockey.PATCH+"backGame.png"));
-        backgroud.put("bg_right",new Texture(Hockey.PATCH+"bg_right.png"));
-        backgroud.put("bg_left",new Texture(Hockey.PATCH+"bg_left.png"));
-        ;
-        backgroud.put("bg_right_1",new Texture(Hockey.PATCH+"bg_left.png"));
-        backgroud.put("bg_left_1",new Texture(Hockey.PATCH+"bg_right.png"));
+        backgroud.put(Config.BACKGROUND,new Texture(Hockey.PATCH+"backGame.png"));
 
-        backgroud.put("bg_top_right",new Texture(Hockey.PATCH+"bg_top.png"));
-        backgroud.put("bg_top_left",new Texture(Hockey.PATCH+"bg_top.png"));
-        backgroud.put("bg_top_right_light",new Texture(Hockey.PATCH+"bg_top_light.png"));
-        backgroud.put("bg_top_left_light",new Texture(Hockey.PATCH+"bg_top_light.png"));
+        backgroud.put(Config.EDGE_RIGHT_TOP,new Texture(Hockey.PATCH+"bg_right.png"));
+        backgroud.put(Config.EDGE_RIGHT_TOP_LIGHT,new Texture(Hockey.PATCH+"bg_right_l.png"));
 
-        backgroud.put("bg_bottom_right",new Texture(Hockey.PATCH+"bg_top.png"));
-        backgroud.put("bg_bottom_left",new Texture(Hockey.PATCH+"bg_top.png"));
-        backgroud.put("bg_bottom_right_light",new Texture(Hockey.PATCH+"bg_top_light.png"));
-        backgroud.put("bg_bottom_left_light",new Texture(Hockey.PATCH+"bg_top_light.png"));
+        backgroud.put(Config.EDGE_RIGHT_BOTTOM,new Texture(Hockey.PATCH+"bg_right.png"));
+        backgroud.put(Config.EDGE_RIGHT_BOTTOM_LIGHT,new Texture(Hockey.PATCH+"bg_right_l.png"));
 
+        backgroud.put(Config.EDGE_LEFT_TOP,new Texture(Hockey.PATCH+"bg_right.png"));
+        backgroud.put(Config.EDGE_LEFT_TOP_LIGHT,new Texture(Hockey.PATCH+"bg_right_l.png"));
+
+        backgroud.put(Config.EDGE_LEFT_BOTTOM,new Texture(Hockey.PATCH+"bg_right.png"));
+        backgroud.put(Config.EDGE_LEFT_BOTTOM_LIGHT,new Texture(Hockey.PATCH+"bg_right_l.png"));
+
+
+
+        backgroud.put(Config.EDGE_TOP_RIGHT,new Texture(Hockey.PATCH+"bg_top.png"));
+        backgroud.put(Config.EDGE_TOP_RIGHT_LIGHT,new Texture(Hockey.PATCH+"bg_top_light.png"));
+        backgroud.put(Config.EDGE_TOP_LEFT,new Texture(Hockey.PATCH+"bg_top.png"));
+        backgroud.put(Config.EDGE_TOP_LEFT_LIGHT,new Texture(Hockey.PATCH+"bg_top_light.png"));
+
+        backgroud.put(Config.EDGE_BOTTOM_RIGHT,new Texture(Hockey.PATCH+"bg_top.png"));
+        backgroud.put(Config.EDGE_BOTTOM_RIGHT_LIGHT,new Texture(Hockey.PATCH+"bg_top_light.png"));
+        backgroud.put(Config.EDGE_BOTTOM_LEFT,new Texture(Hockey.PATCH+"bg_top.png"));
+        backgroud.put(Config.EDGE_BOTTOM_LEFT_LIGHT,new Texture(Hockey.PATCH+"bg_top_light.png"));
 
         background = new BackgroundGame(Hockey.WITDH,Hockey.HEIGHT,backgroud);
 
-        pandle_pink = new Pandle((int) (cam.viewportWidth/ 2), (int) (cam.viewportHeight - 100),new Texture(Hockey.PATCH+"pandle.png"),new Texture(Hockey.PATCH+"pandle_l.png"));
-        pandle_green = new Pandle((int) (cam.viewportWidth / 2), (int) (cam.viewportHeight/2-200),new Texture(Hockey.PATCH+"pandle_1.png"),new Texture(Hockey.PATCH+"pandle_l_1.png"));
-        puck = new Puck((int) cam.viewportWidth / 2, (int) cam.viewportHeight / 2);
+        pandle_pink = new Pandle(0,0,new Texture(Hockey.PATCH+"pandle.png"),new Texture(Hockey.PATCH+"pandle_l.png"));
+        pandle_pink.setPosition(Hockey.WITDH/2,Hockey.HEIGHT- pandle_pink.getHeight());
+        pandle_green = new Pandle(0, 0,new Texture(Hockey.PATCH+"pandle_1.png"),new Texture(Hockey.PATCH+"pandle_l_1.png"));
+        pandle_green.setPosition(Hockey.WITDH/2,pandle_green.getHeight());
+        puck = new Puck((int) cam.viewportWidth / 2, (int) cam.viewportHeight / 2,background.getMapEdge());
     }
 
 
@@ -81,13 +91,8 @@ public class PlayState extends State {
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-//                pandle_pink.move(screenX, screenY);
-
-                if (screenY < Hockey.HEIGHT / 2) {
-                    pandle_green.move(screenX, screenY);
-                } else {
-                    pandle_pink.move(screenX, screenY);
-                }
+                // Ham di chuyen
+                move(screenX,screenY);
                 return false;
             }
 
@@ -99,13 +104,9 @@ public class PlayState extends State {
             @Override
             public boolean touchDragged(int screenX, int screenY, int pointer) {
 
-//                pandle_pink.move(screenX, screenY);
+                // ham di chuyen
+                move(screenX,screenY);
 
-                if (screenY < Hockey.HEIGHT / 2) {
-                    pandle_green.move(screenX, screenY);
-                } else {
-                    pandle_pink.move(screenX, screenY);
-                }
                 return false;
             }
 
@@ -133,7 +134,7 @@ public class PlayState extends State {
         pandle_pink.update(dt);
         pandle_green.update(dt);
         puck.update(dt);
-        background.update(pandle_pink,pandle_green,puck);
+        goalScore();  // kiem tra xem co ghi duoc diem khong
     }
 
 
@@ -146,7 +147,7 @@ public class PlayState extends State {
     public void render(SpriteBatch sb) {
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
-        background.draw(sb);
+        background.draw(sb,pandle_pink,pandle_green,puck);
         puck.draw(sb);
         pandle_pink.draw(sb);
         pandle_green.draw(sb);
@@ -175,10 +176,40 @@ public class PlayState extends State {
 
     }
     /*
-        Giới hạn không cho di chuyển ra khởi màng hình
+        Giới hạn không cho di chuyển ra khởi màng hình, va di chuyen
     **/
+    public void move(int screenX,int screenY){
+        if (screenY < Hockey.HEIGHT / 2) {
 
+            screenX = (int) Math.min(Math.max(screenX, pandle_green.getWitdh()/2+background.getMapEdge().get(Config.EDGE_RIGHT_TOP).getWitdh()-1),
+                    Hockey.WITDH-pandle_green.getWitdh()/2-(background.getMapEdge().get(Config.EDGE_LEFT_TOP).getWitdh()-1));
 
+            screenY = (int) Math.min(Math.max(screenY, pandle_green.getHeight()/2+background.getMapEdge().get(Config.EDGE_TOP_RIGHT).getHeight()-1),
+                    Hockey.HEIGHT/2-pandle_green.getHeight()/2);
+            pandle_green.move(screenX, screenY);
+
+        } else {
+            // gioi han bounds khong cho chay ra khoi mang hinh
+            screenX = (int) Math.min(Math.max(screenX, pandle_pink.getWitdh()/2+background.getMapEdge().get(Config.EDGE_RIGHT_BOTTOM).getWitdh()-1),
+                    Hockey.WITDH-pandle_pink.getWitdh()/2-(background.getMapEdge().get(Config.EDGE_LEFT_BOTTOM).getWitdh()-1));
+
+            screenY = (int) Math.min(Math.max(screenY,Hockey.HEIGHT/2+pandle_pink.getHeight()/2),
+                    Hockey.HEIGHT -pandle_pink.getHeight()/2-(background.getMapEdge().get(Config.EDGE_BOTTOM_RIGHT).getHeight()-1));
+
+            pandle_pink.move(screenX, screenY);
+        }
+    }
+    /*
+           Kiem tra xem c
+     */
+    public void goalScore(){
+        if(puck.getY()<=0 || puck.getY()>= Hockey.HEIGHT){
+            pandle_pink.reLoadGame(Hockey.WITDH / 2, Hockey.HEIGHT - pandle_pink.getHeight());
+            pandle_green.reLoadGame(Hockey.WITDH / 2, pandle_pink.getHeight());
+            puck.reLoadGame(Hockey.WITDH / 2, Hockey.HEIGHT / 2);
+
+        }
+    }
 
 
     @Override

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.skyplus.hockey.Hockey;
+import com.skyplus.hockey.config.Config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,85 +21,91 @@ import java.util.Map;
 
 public class BackgroundGame {
 
-
-
     private Sprite bg;
-    private List<Edge> listEdge ;
+    private Map<String,Edge> mapEdge;
 
-    private Boolean hits  = false;
 
-    public BackgroundGame(int widthScreen, int hieghtscreen, HashMap<String,Texture> backgroud){
 
-        bg = new Sprite(backgroud.get("backgroud"));
+    public BackgroundGame(int widthScreen, int hieghtscreen, Map<String,Texture> backgroud) {
+
+        bg = new Sprite(backgroud.get(Config.BACKGROUND));
         bg.setRegionWidth(widthScreen);
         bg.setRegionHeight(hieghtscreen);
-        bg.setPosition(0,0);
-        listEdge = new ArrayList<Edge>();
+        bg.setPosition(0, 0);
+        mapEdge = new HashMap<String, Edge>();
 
-        addEdge(widthScreen-backgroud.get("bg_left").getWidth(),0,backgroud.get("bg_left"),backgroud.get("bg_left_1"));
-        addEdge(0,0,backgroud.get("bg_right"),backgroud.get("bg_right_1"));
+        mapEdge.put(Config.EDGE_RIGHT_TOP, new Edge(0, 0, backgroud.get(Config.EDGE_RIGHT_TOP), backgroud.get(Config.EDGE_RIGHT_TOP_LIGHT)));
+        mapEdge.put(Config.EDGE_RIGHT_BOTTOM, new Edge(0, Hockey.HEIGHT / 2, backgroud.get(Config.EDGE_RIGHT_BOTTOM), backgroud.get(Config.EDGE_RIGHT_BOTTOM_LIGHT)));
+        mapEdge.put(Config.EDGE_LEFT_TOP, new Edge(widthScreen - backgroud.get(Config.EDGE_LEFT_TOP).getWidth(), 0, backgroud.get(Config.EDGE_LEFT_TOP), backgroud.get(Config.EDGE_LEFT_TOP_LIGHT)));
+        mapEdge.put(Config.EDGE_LEFT_BOTTOM, new Edge(widthScreen - backgroud.get(Config.EDGE_LEFT_BOTTOM).getWidth(), Hockey.HEIGHT / 2, backgroud.get(Config.EDGE_LEFT_BOTTOM), backgroud.get(Config.EDGE_LEFT_BOTTOM_LIGHT)));
+        mapEdge.put(Config.EDGE_TOP_RIGHT, new Edge(0, 0, backgroud.get(Config.EDGE_TOP_RIGHT), backgroud.get(Config.EDGE_TOP_RIGHT_LIGHT)));
+        mapEdge.put(Config.EDGE_TOP_LEFT, new Edge(widthScreen - backgroud.get(Config.EDGE_TOP_LEFT).getWidth(), 0, backgroud.get(Config.EDGE_TOP_LEFT), backgroud.get(Config.EDGE_TOP_LEFT_LIGHT)));
+        mapEdge.put(Config.EDGE_BOTTOM_RIGHT, new Edge(0, hieghtscreen - backgroud.get(Config.EDGE_BOTTOM_RIGHT).getHeight(), backgroud.get(Config.EDGE_BOTTOM_RIGHT), backgroud.get(Config.EDGE_BOTTOM_RIGHT_LIGHT)));
+        mapEdge.put(Config.EDGE_BOTTOM_LEFT, new Edge(widthScreen - backgroud.get(Config.EDGE_BOTTOM_LEFT).getWidth(), hieghtscreen - backgroud.get(Config.EDGE_BOTTOM_LEFT).getHeight(), backgroud.get(Config.EDGE_BOTTOM_LEFT), backgroud.get(Config.EDGE_BOTTOM_LEFT_LIGHT)));
 
-        addEdge(0,0,backgroud.get("bg_top_right"),backgroud.get("bg_top_right_light"));
-        addEdge(widthScreen-backgroud.get("bg_top_left").getWidth(),0,backgroud.get("bg_top_left"),backgroud.get("bg_top_left_light"));
-        addEdge(0,hieghtscreen-backgroud.get("bg_bottom_right").getHeight(),backgroud.get("bg_bottom_right"),backgroud.get("bg_bottom_right_light"));
-        addEdge(widthScreen-backgroud.get("bg_bottom_left").getWidth(),hieghtscreen-backgroud.get("bg_bottom_left").getHeight(),backgroud.get("bg_bottom_left"),backgroud.get("bg_bottom_left_light"));
-    }
-    public List<Edge> getListEdge() {
-        return listEdge;
-    }
 
-    public void setListEdge(List<Edge> listEdge) {
-        this.listEdge = listEdge;
     }
 
-    public void draw(SpriteBatch sb){
+
+    public Map<String, Edge> getMapEdge() {
+        return mapEdge;
+    }
+
+    public void setMapEdge(Map<String, Edge> mapEdge) {
+        this.mapEdge = mapEdge;
+    }
+
+    // ve backround va cac canh
+    public void draw(SpriteBatch sb,Pandle pandle_pink,Pandle pandle_green,Puck puck  ){
         bg.draw(sb);
-        for (Edge edge: listEdge) {
-            edge.draw(sb);
-        }
-    }
+        Edge edge = new Edge();
+        for(String key : mapEdge.keySet()){
+                edge = mapEdge.get(key);
+            if(System.currentTimeMillis()-edge.getTimer()>100){   // cho canh sang 200 mili giay
+                edge.setBody(edge.getBody_dark());
 
-    // update cac doi tuong va cham voi canh
-    public void update(Pandle pandle_pink,Pandle pandle_green,Puck puck ){
-
-        for( Edge edge:listEdge){
-            hits = false;
-            if(Intersector.overlaps(pandle_pink.getBounds(), edge.getBound()))                                    {
+            }
+            if(Intersector.overlaps(pandle_pink.getBounds(), edge.getBound())) {   //  vam cham voi pandel
                 edge.setBody(edge.getBody_light());
+                edge.setTimer(System.currentTimeMillis());
                 pandle_pink.setBody(pandle_pink.getBody_light());
-                hits = true;
             }
             if( Intersector.overlaps(pandle_green.getBounds(),edge.getBound())){
                 pandle_green.setBody(pandle_green.getBody_light());
                 edge.setBody(edge.getBody_light());
-                hits = true;
+                edge.setTimer(System.currentTimeMillis());
+
             }
             if (Intersector.overlaps(puck.getBounds(),edge.getBound())){
                 edge.setBody(edge.getBody_light());
-                hits = true;
+                edge.setTimer(System.currentTimeMillis());
+
             }
-            if(hits==false){
-                edge.setBody(edge.getBody_dark());
-            }
+
+            edge.draw(sb);
 
         }
     }
 
-    private void addEdge(int x,int y, Texture body1,Texture body2){
-        Edge edge = new Edge(x,y,body1,body2);
-        listEdge.add(edge);
-    }
 
     // cac canh cua background
     public  class Edge {
-
+        // vi tri cua canh
         private int postionX,getPostionY;
+
         private Sprite body;
         private Texture body_dark;
         private Texture body_light;
+
+        // bound cua canh
         private Rectangle bound;
 
+        // set thoi gian sang cua moi canh khi co va cham
+        private long timer = 0;
 
+        public Edge() {
+
+        }
 
         public Edge(int poistionX, int positionY, Texture body_dark, Texture body_light) {
             this.postionX = poistionX;
@@ -110,6 +117,8 @@ public class BackgroundGame {
             bound = new Rectangle(this.body.getX(),this.body.getY(),this.body.getWidth(),this.body.getHeight());
         }
 
+
+
         public Sprite getBody() {
             return body;
         }
@@ -118,6 +127,8 @@ public class BackgroundGame {
 
         // ham set body sang toi, neu flagLigh  = true nghia la sang, co vat va cham nguoc lai khong
         public void setBody(Texture body) {
+
+
             this.body.setRegion(body);
         }
 
@@ -140,7 +151,12 @@ public class BackgroundGame {
 
             return bound;
         }
-
+        public float getWitdh() {
+            return body.getWidth();
+        }
+        public float getHeight() {
+            return body.getHeight();
+        }
         public void setBound(Rectangle bound) {
             bound.set(this.body.getX(),this.body.getY(),this.body.getWidth(),this.body.getHeight());
             this.bound = bound;
@@ -152,6 +168,13 @@ public class BackgroundGame {
         }
 
 
+        public long getTimer() {
+            return timer;
+        }
+
+        public void setTimer(long timer) {
+            this.timer = timer;
+        }
     }
 
 }

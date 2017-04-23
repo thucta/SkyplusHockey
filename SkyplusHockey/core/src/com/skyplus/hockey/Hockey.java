@@ -49,7 +49,6 @@ public class Hockey extends Game {
 	@Override
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
 		gms.update(Gdx.graphics.getDeltaTime());
 		gms.render(batch);
 	}

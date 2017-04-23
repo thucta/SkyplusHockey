@@ -14,7 +14,7 @@ public abstract class GameObject {
     // ham va cham
     public abstract Boolean hits(Circle circle);
     // di chuyen
-    public abstract void move(int x,int y);
+    public abstract void move(float x,float y);
     public abstract void update(float delta);
     // get toa do X
     public abstract float getX();
