@@ -30,7 +30,7 @@ public class Puck extends GameObject {
 
     private int radius;
     private static float speed = 0.988f;
-    private static float LIMIT = 25;
+    private static float LIMIT = 30 ;
     private static float LIMIT_STOP = 0.3f;
     private int withEdge = 14;
     int leftBound = 130;
@@ -115,7 +115,7 @@ public class Puck extends GameObject {
     // update trang thai cho opuck bao gom vi tri, body,...
     @Override
     public void update(float delta) {
-//        velocityLimit();
+        velocityLimit();
         velocity.x *= speed;
         velocity.y *= speed;
         postion.x += velocity.x;

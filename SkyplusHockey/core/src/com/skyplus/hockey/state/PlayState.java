@@ -26,16 +26,18 @@ public class PlayState extends State {
     private Pandle pandle_pink;
     private Pandle pandle_green;
     private Puck puck;
-    private HashMap<String,Texture> backgroud ;
+
+
     public static Map<Integer, Sprite> spriteMap;
     private float scoreVerticalOffset = 20, scoreHorizontalOffset = 20;
+
     public PlayState(GameStateManager gsm) {
         super(gsm);
         initator();
     }
 
     private void initator() {
-        backgroud = new HashMap<String, Texture>();
+        HashMap<String,Texture>  backgroud = new HashMap<String, Texture>();
         backgroud.put(Config.BACKGROUND,new Texture(Hockey.PATCH+"backGame.png"));
 
         backgroud.put(Config.EDGE_RIGHT_TOP,new Texture(Hockey.PATCH+"bg_right.png"));
@@ -162,7 +164,7 @@ public class PlayState extends State {
         puck.draw(sb);
         pandle_pink.draw(sb);
         pandle_green.draw(sb);
-        drawScores(sb);
+//        drawScores(sb);
         sb.end();
     }
 
@@ -218,7 +220,7 @@ public class PlayState extends State {
 
         if(puck.getY()<=0 || puck.getY()>= Hockey.HEIGHT){
             if(puck.getY()< Hockey.HEIGHT/2) {
-                Gdx.app.log("abc","1");
+//                Gdx.app.log("abc","1");
                 pandle_pink.score++;
                 pandle_pink.updateScore();
             }else {
