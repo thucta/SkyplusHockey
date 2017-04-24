@@ -115,7 +115,7 @@ public class Puck extends GameObject {
     // update trang thai cho opuck bao gom vi tri, body,...
     @Override
     public void update(float delta) {
-        velocityLimit();
+//        velocityLimit();
         velocity.x *= speed;
         velocity.y *= speed;
         postion.x += velocity.x;

@@ -3,6 +3,7 @@ package com.skyplus.hockey.state;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
@@ -13,6 +14,7 @@ import com.skyplus.hockey.objects.Pandle;
 import com.skyplus.hockey.objects.Puck;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -25,7 +27,8 @@ public class PlayState extends State {
     private Pandle pandle_green;
     private Puck puck;
     private HashMap<String,Texture> backgroud ;
-
+    public static Map<Integer, Sprite> spriteMap;
+    private float scoreVerticalOffset = 20, scoreHorizontalOffset = 20;
     public PlayState(GameStateManager gsm) {
         super(gsm);
         initator();
@@ -61,9 +64,17 @@ public class PlayState extends State {
 
         background = new BackgroundGame(Hockey.WITDH,Hockey.HEIGHT,backgroud);
 
-        pandle_pink = new Pandle(0,0,new Texture(Hockey.PATCH+"pandle.png"),new Texture(Hockey.PATCH+"pandle_l.png"));
+        //scrore
+        spriteMap = new HashMap<Integer, Sprite>();
+        for (int i = 0; i < 10; i++) {
+            Sprite sprite = new Sprite(new Texture(Hockey.PATCH+i + ".png"));
+            sprite.setSize(sprite.getWidth(), sprite.getHeight());
+            spriteMap.put(i, sprite);
+        }
+
+        pandle_pink = new Pandle(0,0,new Texture(Hockey.PATCH+"pandle.png"),new Texture(Hockey.PATCH+"pandle_l.png"),spriteMap);
         pandle_pink.setPosition(Hockey.WITDH/2,Hockey.HEIGHT- pandle_pink.getHeight());
-        pandle_green = new Pandle(0, 0,new Texture(Hockey.PATCH+"pandle_1.png"),new Texture(Hockey.PATCH+"pandle_l_1.png"));
+        pandle_green = new Pandle(0, 0,new Texture(Hockey.PATCH+"pandle_1.png"),new Texture(Hockey.PATCH+"pandle_l_1.png"),spriteMap);
         pandle_green.setPosition(Hockey.WITDH/2,pandle_green.getHeight());
         puck = new Puck((int) cam.viewportWidth / 2, (int) cam.viewportHeight / 2,background.getMapEdge());
     }
@@ -151,6 +162,7 @@ public class PlayState extends State {
         puck.draw(sb);
         pandle_pink.draw(sb);
         pandle_green.draw(sb);
+        drawScores(sb);
         sb.end();
     }
 
@@ -203,13 +215,41 @@ public class PlayState extends State {
            Kiem tra xem c
      */
     public void goalScore(){
+
         if(puck.getY()<=0 || puck.getY()>= Hockey.HEIGHT){
+            if(puck.getY()< Hockey.HEIGHT/2) {
+                Gdx.app.log("abc","1");
+                pandle_pink.score++;
+                pandle_pink.updateScore();
+            }else {
+                pandle_green.score++;
+                pandle_green.updateScore();
+            }
             pandle_pink.reLoadGame(Hockey.WITDH / 2, Hockey.HEIGHT - pandle_pink.getHeight());
             pandle_green.reLoadGame(Hockey.WITDH / 2, pandle_pink.getHeight());
             puck.reLoadGame(Hockey.WITDH / 2, Hockey.HEIGHT / 2);
 
         }
     }
+    public void drawScores(SpriteBatch sb) {
+        pandle_green.score1.setPosition(scoreHorizontalOffset,
+                Hockey.WITDH  / 2 - scoreVerticalOffset - pandle_green.score1.getHeight());
+        pandle_green.score1.draw(sb);
+
+        pandle_green.score2.setPosition(scoreHorizontalOffset * 1.1f + pandle_green.score1.getWidth(),
+                Hockey.WITDH  / 2 - scoreVerticalOffset - pandle_green.score2.getHeight());
+        pandle_green.score2.draw(sb);
+
+        pandle_pink.score1.setPosition(scoreHorizontalOffset,
+                Hockey.WITDH  / 2 + scoreVerticalOffset);
+        pandle_pink.score1.draw(sb);
+
+        pandle_pink.score2.setPosition(scoreHorizontalOffset * 1.1f + pandle_pink.score1.getWidth(),
+                Hockey.WITDH  / 2 + scoreVerticalOffset);
+        pandle_pink.score2.draw(sb);
+    }
+
+
 
 
     @Override

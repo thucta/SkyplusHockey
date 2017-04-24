@@ -7,6 +7,9 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Created by TruongNN on 3/24/2017.
@@ -21,7 +24,9 @@ public class Pandle extends GameObject {
 
     private Vector2 position;
     private Circle bounds;
-
+    public Sprite score1, score2;
+    public int score = 0;
+    private Map<Integer, Sprite> spriteMap = new HashMap<Integer, Sprite>();
     public static float speed = 70000;
 
 
@@ -35,13 +40,15 @@ public class Pandle extends GameObject {
     private long timer = 0;
 
 
-    public Pandle(int x, int y, Texture body1, Texture body2) {
+    public Pandle(int x, int y, Texture body1, Texture body2,Map<Integer, Sprite> spriteMap ) {
         position = new Vector2(x, y);
         this.body_dark = body1;
         this.body_light = body2;
+        this.spriteMap = spriteMap;
         body = new Sprite(body1);
         bounds = new Circle(position.x, position.y, getWitdh() / 2);
         velocity = new Vector2d(0, 0);
+        updateScore();
     }
 
     @Override
@@ -180,5 +187,11 @@ public class Pandle extends GameObject {
     }
     public void setBody(Texture body) {
         this.body.setRegion(body);
+    }
+    public void updateScore() {
+        score1 = spriteMap.get(score / 10);
+        score1.flip(false, true);
+        score2 = spriteMap.get(score % 10);
+        score2.flip(false, true);
     }
 }
