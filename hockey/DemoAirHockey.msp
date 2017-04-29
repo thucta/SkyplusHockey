@@ -1,0 +1,932 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" includeAllResolution="false" applicationType="game" projectOutput="$(workspace_dir)\output" projectArtefact="AirHockey_$(Platform)_$(Resolution)" appFile=".\DemoAirHockey.app">
+  <conditionDefines />
+  <NewSkin>true</NewSkin>
+  <fileProperties>
+    <property path="./DemoAirHockey/HelveticaRoundedLTStd-BdCn.otf" isDirectory="false" excluded="true">
+      <conditions />
+    </property>
+    <property path="./DemoAirHockey/AirHockey" isDirectory="false" excluded="false">
+      <conditions />
+    </property>
+    <property path="./DemoAirHockey/800_1280/backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_800/backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_640" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/320_480" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/320_480/backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/320_480/backSplash.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/320_480/.DS_Store" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/320_480/menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/320_480/menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/320_480/menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/320_480/menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/320_480/player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/320_480/player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/320_480/puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/360_460" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/360_640" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/360_640/backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/360_640/backSplash.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/360_640/menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/360_640/menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/360_640/menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/360_640/menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/360_640/player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/360_640/player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/360_640/puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_800" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_800/.DS_Store" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_800/backSplash.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_800/menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_800/menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_800/menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_800/menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_800/player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_800/player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_800/puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/640_960" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/640_960/.DS_Store" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/640_960/backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/640_960/backSplash.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/640_960/menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/640_960/menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/640_960/menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/640_960/menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/640_960/player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/640_960/player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/640_960/puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/768_1024" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/768_1024/.DS_Store" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/768_1024/backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/768_1024/backSplash.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/768_1024/menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/768_1024/menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/768_1024/menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/768_1024/menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/768_1024/player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/768_1024/player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/768_1024/puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/800_1280" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/800_1280/.DS_Store" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/800_1280/menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/800_1280/menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/800_1280/menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/800_1280/menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/800_1280/player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/800_1280/player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/800_1280/puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_640/backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_640/backSplash.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_640/menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_640/menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_640/menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_640/menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_640/player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_640/player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/480_640/puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\360_640" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_640" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\320_480" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\320_480\backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\320_480\backSplash.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\320_480\menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\320_480\menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\320_480\menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\320_480\menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\320_480\player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\320_480\player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\320_480\puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-3" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\360_640\backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\360_640\backSplash.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\360_640\menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\360_640\menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\360_640\menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\360_640\menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\360_640\player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\360_640\player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\360_640\puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-4" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_640\backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_640\backSplash.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_640\menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_640\menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_640\menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_640\menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_640\player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_640\player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_640\puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-5" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\640_960" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\640_960\backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\640_960\backSplash.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\640_960\menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\640_960\menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\640_960\menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\640_960\menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\640_960\player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\640_960\player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\640_960\puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-7" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\768_1024" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\768_1024\backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\768_1024\backSplash.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\768_1024\menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\768_1024\menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\768_1024\menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\768_1024\menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\768_1024\player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\768_1024\player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\768_1024\puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-8" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\800_1280" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\800_1280\backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\800_1280\menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\800_1280\menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\800_1280\menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\800_1280\menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\800_1280\player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\800_1280\player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\800_1280\puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-12" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_800" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_800\backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_800\backSplash.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_800\menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_800\menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_800\menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_800\menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_800\player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_800\player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\480_800\puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="-6" />
+      </conditions>
+    </property>
+    <property path=".\DemoAirHockey\uni" isDirectory="true" excluded="false">
+      <conditions />
+    </property>
+    <property path=".\DemoAirHockey\uni\backGame.png" isDirectory="false" excluded="false">
+      <conditions />
+    </property>
+    <property path=".\DemoAirHockey\uni\backSplash.png" isDirectory="false" excluded="false">
+      <conditions />
+    </property>
+    <property path=".\DemoAirHockey\uni\menuBack.png" isDirectory="false" excluded="false">
+      <conditions />
+    </property>
+    <property path=".\DemoAirHockey\uni\menuBtn.png" isDirectory="false" excluded="false">
+      <conditions />
+    </property>
+    <property path=".\DemoAirHockey\uni\menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions />
+    </property>
+    <property path=".\DemoAirHockey\uni\menuPart.png" isDirectory="false" excluded="false">
+      <conditions />
+    </property>
+    <property path=".\DemoAirHockey\uni\player1.png" isDirectory="false" excluded="false">
+      <conditions />
+    </property>
+    <property path=".\DemoAirHockey\uni\player2.png" isDirectory="false" excluded="false">
+      <conditions />
+    </property>
+    <property path=".\DemoAirHockey\uni\puck.png" isDirectory="false" excluded="false">
+      <conditions />
+    </property>
+    <property path="./DemoAirHockey/aiPlayer.ms" isDirectory="false" excluded="false">
+      <conditions />
+    </property>
+    <property path="./DemoAirHockey/uni" isDirectory="false" excluded="false">
+      <conditions />
+    </property>
+    <property path="./DemoAirHockey/600_1024" isDirectory="true" excluded="false">
+      <conditions>
+        <condition id="-2" rule="1" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/600_1024/backGame.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="1" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/600_1024/menuBack.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="1" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/600_1024/menuBtn.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="1" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/600_1024/menuBtnPress.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="1" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/600_1024/menuPart.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="1" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/600_1024/player1.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="1" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/600_1024/player2.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="1" />
+      </conditions>
+    </property>
+    <property path="./DemoAirHockey/600_1024/puck.png" isDirectory="false" excluded="false">
+      <conditions>
+        <condition id="-2" rule="1" />
+      </conditions>
+    </property>
+  </fileProperties>
+  <devices>
+    <device targetPlatform="100">
+      <publishProperties>
+        <property name="icon" value="$(project_dir)/platform/android/icon_android_72.png" />
+        <property name="splash" value="" />
+        <property name="alias" value="" />
+        <property name="keystore" value="" />
+        <property name="keypassword" value="" />
+        <property name="storepassword" value="" />
+        <property name="supportedDevices" value="universal" />
+        <property name="permission" value="" />
+      </publishProperties>
+      <includes>
+        <fonts>
+          <string>Ubuntu-L.ttf</string>
+        </fonts>
+        <skin name="" theme="" />
+      </includes>
+    </device>
+    <device targetPlatform="150">
+      <publishProperties>
+        <property name="icon" value="$(project_dir)/platform/android/icon_android_72.png" />
+        <property name="splash" value="" />
+        <property name="alias" value="" />
+        <property name="keystore" value="" />
+        <property name="keypassword" value="" />
+        <property name="storepassword" value="" />
+        <property name="installLocation" value="preferExternal" />
+        <property name="supportedDevices" value="armv7a" />
+        <property name="permission" value="" />
+      </publishProperties>
+      <includes>
+        <fonts>
+          <string>Ubuntu-L.ttf</string>
+        </fonts>
+        <skin name="" theme="" />
+      </includes>
+    </device>
+    <device targetPlatform="450">
+      <publishProperties>
+        <property name="icon" value="" />
+        <property name="splash" value="" />
+        <property name="applicationId" value="0xA89FDE0E" />
+        <property name="certificate" value="" />
+        <property name="key" value="" />
+        <property name="password" value="" />
+      </publishProperties>
+      <includes>
+        <fonts>
+          <string>Ubuntu-L.ttf</string>
+        </fonts>
+        <skin name="" theme="" />
+      </includes>
+    </device>
+    <device targetPlatform="200">
+      <publishProperties>
+        <property name="icon" value="" />
+        <property name="splash" value="" />
+        <property name="manifest" value="" />
+        <property name="icon1" value="" />
+        <property name="splash1" value="" />
+        <property name="icon2" value="" />
+        <property name="splash2" value="" />
+      </publishProperties>
+      <includes>
+        <fonts>
+          <string>Ubuntu-L.ttf</string>
+        </fonts>
+        <skin name="" theme="" />
+      </includes>
+    </device>
+    <device targetPlatform="520">
+      <publishProperties>
+        <property name="icon" value="" />
+        <property name="splash" value="" />
+      </publishProperties>
+      <includes>
+        <fonts>
+          <string>Ubuntu-L.ttf</string>
+        </fonts>
+        <skin name="" theme="" />
+      </includes>
+    </device>
+    <device targetPlatform="300">
+      <publishProperties>
+        <property name="icon" value="" />
+        <property name="splash" value="" />
+        <property name="codeSigningIdentity" value="" />
+        <property name="supportedDevices" value="universal" />
+        <property name="icon3gs" value="$(project_dir)/platform/ios/icon_iphone_72.png" />
+        <property name="icon4+" value="$(project_dir)/platform/ios/icon_iphone_114.png" />
+        <property name="iconTablet" value="$(project_dir)/platform/ios/icon_iphone_72.png" />
+        <property name="splash3gs" value="$(project_dir)/platform/ios/splash_320_480.png" />
+        <property name="splash4+" value="$(project_dir)/platform/ios/splash_640_960.png" />
+        <property name="splashTablet" value="$(project_dir)/platform/ios/splash_768_1024.png" />
+        <property name="bundleIdentifier" value="com.mothiva.airhockey" />
+      </publishProperties>
+      <includes>
+        <fonts>
+          <string>Ubuntu-L.ttf</string>
+        </fonts>
+        <skin name="" theme="" />
+      </includes>
+    </device>
+    <device targetPlatform="201">
+      <publishProperties>
+        <property name="icon" value="" />
+        <property name="splash" value="" />
+        <property name="manifest" value="" />
+      </publishProperties>
+      <includes>
+        <fonts>
+          <string>Ubuntu-L.ttf</string>
+        </fonts>
+        <skin name="" theme="" />
+      </includes>
+    </device>
+  </devices>
+</Project>
