@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -19,9 +20,7 @@ public class MenuState extends State implements Screen{
 
 
     private Texture bg;
-    private Texture button_PC;
-    private Texture button_PP;
-    private Texture button_ST;
+    private Sprite button_PC,button_PP,button_ST;
 
     private Rectangle createBoundsPC , createBoundsPP, createBoundsST;
     private OrthographicCamera cam;
@@ -33,10 +32,13 @@ public class MenuState extends State implements Screen{
         super(gsm);
         Gdx.app.log("here","MenuState");
         bg = new Texture(Hockey.PATCH+"backGame.png");
-        button_PC = new Texture(Hockey.PATCH+"buttonPC.png");
-        button_PP = new Texture(Hockey.PATCH+"buttonPP.png");
-        button_ST = new Texture(Hockey.PATCH+"buttonST.png");
+        button_PC = new Sprite(new Texture(Hockey.PATCH+"buttonPC.png"));
+        button_PP = new Sprite(new Texture(Hockey.PATCH+"buttonPP.png"));
+        button_ST = new Sprite(new Texture(Hockey.PATCH+"buttonST.png"));
 
+        button_PP.setPosition(Hockey.WITDH/2-button_PP.getWidth()/2,Hockey.HEIGHT/2-button_PP.getHeight()*3 );
+        button_PC.setPosition(Hockey.WITDH/2-button_PC.getWidth()/2,Hockey.HEIGHT/2-button_PC.getHeight()/2);
+        button_ST.setPosition(Hockey.WITDH/2-button_ST.getWidth()/2,Hockey.HEIGHT/2+button_ST.getHeight()*2);
 
 
 
@@ -82,11 +84,12 @@ public class MenuState extends State implements Screen{
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 if (createBoundsPP.contains(screenX,screenY)) {
-                    gsm.set(new ModeState(gsm));
+                    gsm.set(new PlayPPState(gsm));
                     dispose();
                 }
                 else if (createBoundsPC.contains(screenX,screenY)) {
-
+                    gsm.set(new ModeState(gsm));
+                    dispose();
                 }
                 else if (createBoundsST.contains(screenX,screenY)) {
                     gsm.set(new SettingState(gsm));
@@ -129,9 +132,9 @@ public class MenuState extends State implements Screen{
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(bg,0,0, Hockey.WITDH, Hockey.HEIGHT);
-        sb.draw(button_PP,cam.viewportWidth/2-button_PP.getWidth()/2,cam.viewportHeight/2-button_PP.getHeight()*3 );
-        sb.draw(button_PC,cam.viewportWidth/2-button_PC.getWidth()/2,cam.viewportHeight/2-button_PC.getHeight()/2);
-        sb.draw(button_ST,cam.viewportWidth/2-button_ST.getWidth()/2,cam.viewportHeight/2+button_ST.getHeight()*2);
+        button_PP.draw(sb);
+        button_ST.draw(sb);
+        button_PC.draw(sb);
 
         sb.end();
 
@@ -169,9 +172,6 @@ public class MenuState extends State implements Screen{
     @Override
     public void dispose() {
         bg.dispose();
-        button_PC.dispose();
-        button_PP.dispose();
-        button_ST.dispose();
     }
 
 }

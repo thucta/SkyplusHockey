@@ -34,7 +34,7 @@ public class PlayState extends State implements Screen{
     //pause
     private Texture buttonPause;
     private Circle boundsPause;
-    private Texture button_Resume,button_NewGame, button_Exit;
+    private Sprite button_Resume,button_NewGame, button_Exit;
     private Rectangle createBoundsResume,createBoundsNewGame, createBoundsExit;
     private boolean GAME_PAUSED = false;
     private Sprite sprite;
@@ -81,7 +81,8 @@ public class PlayState extends State implements Screen{
                 }else {
 
                     if (createBoundsResume.contains(screenX, screenY)) {
-                        resume();
+                        gsm.set(new WinState(gsm));
+                        dispose();
                     }
                     if(createBoundsNewGame.contains(screenX, screenY)){
                         gsm.set(new PlayState(gsm));
@@ -188,9 +189,17 @@ public class PlayState extends State implements Screen{
         //pause
         buttonPause = new Texture(Hockey.PATCH + "buttonPause.png");
         boundsPause = new Circle(cam.viewportWidth-buttonPause.getWidth()/2,cam.viewportHeight/2-buttonPause.getHeight()/2,buttonPause.getHeight());
-        button_Resume = new Texture(Hockey.PATCH+"buttonResume.png");
-        button_NewGame = new Texture(Hockey.PATCH+"buttonNewGame.png");
-        button_Exit = new Texture(Hockey.PATCH+"buttonExit.png");
+        button_Resume = new Sprite(new Texture(Hockey.PATCH+"buttonResume.png"));
+        button_NewGame = new Sprite(new Texture(Hockey.PATCH+"buttonNewGame.png"));
+        button_Exit = new Sprite(new Texture(Hockey.PATCH+"buttonExit.png"));
+
+
+        button_Resume.setPosition(Hockey.WITDH/2-button_Resume.getWidth()/2,Hockey.HEIGHT/2-button_Resume.getHeight()*3);
+        button_NewGame.setPosition(Hockey.WITDH/2-button_NewGame.getWidth()/2,Hockey.HEIGHT/2-button_NewGame.getHeight()/2);
+        button_Exit.setPosition(Hockey.WITDH/2-button_Exit.getWidth()/2,Hockey.HEIGHT/2+button_Exit.getHeight()*2);
+
+
+
         createBoundsResume = new Rectangle(cam.viewportWidth/2-button_Resume.getWidth()/2,cam.viewportHeight/2-button_Resume.getHeight()*3,
                 button_Resume.getWidth(), button_Resume.getHeight());
         createBoundsNewGame = new Rectangle((cam.viewportWidth - button_NewGame.getWidth())/2,
@@ -228,10 +237,9 @@ public class PlayState extends State implements Screen{
             pandle_pink.draw(sb);
             pandle_green.draw(sb);
             sprite.draw(sb);
-
-            sb.draw(button_Resume,cam.viewportWidth/2-button_Resume.getWidth()/2,cam.viewportHeight/2-button_Resume.getHeight()*3);
-            sb.draw(button_NewGame,cam.viewportWidth/2-button_NewGame.getWidth()/2,cam.viewportHeight/2-button_NewGame.getHeight()/2);
-            sb.draw(button_Exit,cam.viewportWidth/2-button_Exit.getWidth()/2,cam.viewportHeight/2+button_Exit.getHeight()*2);
+            button_Resume.draw(sb);
+            button_NewGame.draw(sb);
+            button_Exit.draw(sb);
         }
 
 //        drawScores(sb);

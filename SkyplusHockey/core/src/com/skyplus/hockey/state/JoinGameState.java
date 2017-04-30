@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.skyplus.hockey.Hockey;
@@ -18,7 +19,7 @@ public class JoinGameState extends State implements Screen{
 
 
     private Texture bg;
-    private Texture button_CreateGame,button_JoinGame,button_Exit;
+    private Sprite button_CreateGame,button_JoinGame,button_Exit;
 
     private Rectangle createBoundsCreate , createBoundsJoin, createBoundsExit;
     private OrthographicCamera cam;
@@ -30,9 +31,13 @@ public class JoinGameState extends State implements Screen{
         super(gsm);
         Gdx.app.log("here","JoinGameState");
         bg = new Texture(Hockey.PATCH+"backGame.png");
-        button_CreateGame = new Texture(Hockey.PATCH+"buttonCreate.png");
-        button_JoinGame = new Texture(Hockey.PATCH+"buttonJoin.png");
-        button_Exit = new Texture(Hockey.PATCH+"buttonExit.png");
+        button_CreateGame = new Sprite(new Texture(Hockey.PATCH+"buttonCreate.png"));
+        button_JoinGame = new Sprite(new Texture(Hockey.PATCH+"buttonJoin.png"));
+        button_Exit = new Sprite(new Texture(Hockey.PATCH+"buttonExit.png"));
+
+        button_CreateGame.setPosition(Hockey.WITDH/2-button_CreateGame.getWidth()/2,Hockey.HEIGHT/2-button_CreateGame.getHeight()*3 );
+        button_JoinGame.setPosition(Hockey.WITDH/2-button_JoinGame.getWidth()/2,Hockey.HEIGHT/2-button_JoinGame.getHeight()/2);
+        button_Exit.setPosition(Hockey.WITDH/2-button_Exit.getWidth()/2,Hockey.HEIGHT/2+button_Exit.getHeight()*2);
 
 
         batch = new SpriteBatch();
@@ -120,9 +125,9 @@ public class JoinGameState extends State implements Screen{
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(bg,0,0, Hockey.WITDH, Hockey.HEIGHT);
-        sb.draw(button_CreateGame,cam.viewportWidth/2-button_CreateGame.getWidth()/2,cam.viewportHeight/2-button_CreateGame.getHeight()*3 );
-        sb.draw(button_JoinGame,cam.viewportWidth/2-button_JoinGame.getWidth()/2,cam.viewportHeight/2-button_JoinGame.getHeight()/2);
-        sb.draw(button_Exit,cam.viewportWidth/2-button_Exit.getWidth()/2,cam.viewportHeight/2+button_Exit.getHeight()*2);
+        button_CreateGame.draw(sb);
+        button_JoinGame.draw(sb);
+        button_Exit.draw(sb);
 
         sb.end();
 
@@ -160,9 +165,7 @@ public class JoinGameState extends State implements Screen{
     @Override
     public void dispose() {
         bg.dispose();
-        button_CreateGame.dispose();
-        button_JoinGame.dispose();
-        button_Exit.dispose();
+
     }
 
 }

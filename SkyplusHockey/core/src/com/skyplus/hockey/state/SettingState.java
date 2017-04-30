@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -17,13 +18,13 @@ import com.skyplus.hockey.Hockey;
 
 public class SettingState extends State implements Screen {
     private Texture bg;
-    private Texture check;
-    private Texture uncheck;
-    private Texture button_ST;
-    private Texture textSound;
+    private Sprite check;
+    private Sprite uncheck;
+    private Sprite button_ST;
+    private Sprite textSound;
 
 
-    private Vector3 touchpoint;
+
 
 
     private Rectangle createBoundsCheck,createBoundsST;
@@ -35,10 +36,15 @@ public class SettingState extends State implements Screen {
         super(gsm);
         Gdx.app.log("here","SettingState");
         bg = new Texture(Hockey.PATCH + "backGame.png");
-        check = new Texture(Hockey.PATCH+"check.png");
-        uncheck = new Texture(Hockey.PATCH+"uncheck.png");
-        button_ST = new Texture(Hockey.PATCH+"buttonST.png");
-        textSound = new Texture(Hockey.PATCH+"soundText.png");
+        check = new Sprite(new Texture(Hockey.PATCH+"check.png"));
+        uncheck = new Sprite(new Texture(Hockey.PATCH+"uncheck.png"));
+        check.setPosition(Hockey.WITDH*4/5,Hockey.HEIGHT/2-check.getHeight()/2);
+        uncheck.setPosition(Hockey.WITDH*4/5,Hockey.HEIGHT/2-uncheck.getHeight()/2);
+        button_ST = new Sprite(new Texture(Hockey.PATCH+"buttonST.png"));
+        button_ST.rotate(360);
+        button_ST.setPosition(Hockey.WITDH/2-button_ST.getWidth()/2,Hockey.HEIGHT/2+button_ST.getHeight()*2);
+        textSound = new Sprite(new Texture(Hockey.PATCH+"soundText.png"));
+        textSound.setPosition(Hockey.WITDH/5,Hockey.HEIGHT/2-check.getHeight()/2);
 
 
         batch = new SpriteBatch();
@@ -51,7 +57,6 @@ public class SettingState extends State implements Screen {
         createBoundsST = new Rectangle(cam.viewportWidth/2-button_ST.getWidth()/2,cam.viewportHeight/2+button_ST.getHeight()*2,
                 button_ST.getWidth(), button_ST.getHeight());
 
-        touchpoint = new Vector3();
     }
 
     @Override
@@ -124,12 +129,12 @@ public class SettingState extends State implements Screen {
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(bg,0,0, Hockey.WITDH, Hockey.HEIGHT);
-        sb.draw(button_ST,cam.viewportWidth/2-button_ST.getWidth()/2,cam.viewportHeight/2+button_ST.getHeight()*2);
-        sb.draw(textSound,cam.viewportWidth/5,cam.viewportHeight/2-check.getHeight()/2);
+        button_ST.draw(sb);
+        textSound.draw(sb);
         if(Hockey.flagCheck){
-            sb.draw(check,cam.viewportWidth*4/5,cam.viewportHeight/2-check.getHeight()/2);
+            check.draw(sb);
         }else {
-            sb.draw(uncheck,cam.viewportWidth*4/5,cam.viewportHeight/2-uncheck.getHeight()/2);
+            uncheck.draw(sb);
         }
         sb.end();
 
@@ -138,10 +143,7 @@ public class SettingState extends State implements Screen {
 
     @Override
     public void dispose() {
-        button_ST.dispose();
         bg.dispose();
-        uncheck.dispose();
-        check.dispose();
     }
 
     @Override

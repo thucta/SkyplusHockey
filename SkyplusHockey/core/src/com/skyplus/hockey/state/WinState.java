@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.skyplus.hockey.Hockey;
@@ -18,8 +19,7 @@ public class WinState extends State implements Screen{
 
 
     private Texture bg;
-    private Texture button_Again;
-    private Texture button_NewGame;
+    private Sprite button_Again, button_NewGame;
 
     private Rectangle createBoundsAgain, createBoundsNewGame;
     private OrthographicCamera cam;
@@ -31,13 +31,10 @@ public class WinState extends State implements Screen{
         super(gsm);
         Gdx.app.log("here","WinState");
         bg = new Texture(Hockey.PATCH+"backGame.png");
-        button_Again = new Texture(Hockey.PATCH+"buttonAgain.png");
-        button_NewGame = new Texture(Hockey.PATCH+"buttonNewGame.png");
-
-
-
-
-
+        button_Again = new Sprite(new Texture(Hockey.PATCH+"buttonAgain.png"));
+        button_NewGame = new Sprite(new Texture(Hockey.PATCH+"buttonNewGame.png"));
+        button_Again.setPosition(Hockey.WITDH/2-button_Again.getWidth()/2,Hockey.HEIGHT/2-button_Again.getHeight()/2);
+        button_NewGame.setPosition(Hockey.WITDH/2-button_NewGame.getWidth()/2,Hockey.HEIGHT/2+button_NewGame.getHeight()*2);
 
 
         batch = new SpriteBatch();
@@ -123,8 +120,9 @@ public class WinState extends State implements Screen{
         sb.begin();
         sb.draw(bg,0,0, Hockey.WITDH, Hockey.HEIGHT);
 //        sb.draw(button_PP,cam.viewportWidth/2-button_PP.getWidth()/2,cam.viewportHeight/2-button_PP.getHeight()*3 );
-        sb.draw(button_Again,cam.viewportWidth/2-button_Again.getWidth()/2,cam.viewportHeight/2-button_Again.getHeight()/2);
-        sb.draw(button_NewGame,cam.viewportWidth/2-button_NewGame.getWidth()/2,cam.viewportHeight/2+button_NewGame.getHeight()*2);
+        button_Again.draw(sb);
+        button_NewGame.draw(sb);
+
 
         sb.end();
 
@@ -162,8 +160,7 @@ public class WinState extends State implements Screen{
     @Override
     public void dispose() {
         bg.dispose();
-        button_Again.dispose();
-        button_NewGame.dispose();
+
     }
 
 }

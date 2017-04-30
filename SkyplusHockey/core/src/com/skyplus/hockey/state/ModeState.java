@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -18,7 +19,8 @@ import com.skyplus.hockey.Hockey;
 public class ModeState extends State implements Screen{
 
 
-    private Texture bg,checkMode, button_Mode1, button_Mode2, button_Mode3, button_Mode4, button_OK;
+    private Texture bg;
+    private Sprite checkMode, button_Mode1, button_Mode2, button_Mode3, button_Mode4, button_OK;
 
     private Rectangle createBoundsMode1 , createBoundsMode2, createBoundsMode3, createBoundsMode4, createBoundsOK;
     private OrthographicCamera cam;
@@ -31,15 +33,22 @@ public class ModeState extends State implements Screen{
     public ModeState(GameStateManager gsm) {
         super(gsm);
         bg = new Texture(Hockey.PATCH+"backGame.png");
-        checkMode = new Texture(Hockey.PATCH+"checkMode.png");
-        button_Mode1 = new Texture(Hockey.PATCH+"mode1.png");
-        button_Mode2 = new Texture(Hockey.PATCH+"mode2.png");
-        button_Mode3 = new Texture(Hockey.PATCH+"mode3.png");
-        button_Mode4 = new Texture(Hockey.PATCH+"mode4.png");
-        button_OK = new Texture(Hockey.PATCH+"buttonOK.png");
+        checkMode = new Sprite(new Texture(Hockey.PATCH+"checkMode.png"));
+        button_Mode1 = new Sprite(new Texture(Hockey.PATCH+"mode1.png"));
+        button_Mode2 = new Sprite(new Texture(Hockey.PATCH+"mode2.png"));
+        button_Mode3 = new Sprite(new Texture(Hockey.PATCH+"mode3.png"));
+        button_Mode4 = new Sprite(new Texture(Hockey.PATCH+"mode4.png"));
+        button_OK = new Sprite(new Texture(Hockey.PATCH+"buttonOK.png"));
 
 
+        height = 0;
+        width = Hockey.WITDH/3-button_Mode1.getWidth()/2;
 
+        button_Mode1.setPosition(width,Hockey.HEIGHT/6-button_Mode1.getHeight()/2 );
+        button_Mode2.setPosition(width,Hockey.HEIGHT/3-button_Mode2.getHeight()/2);
+        button_Mode3.setPosition(width,Hockey.HEIGHT/2-button_Mode3.getHeight()/2);
+        button_Mode4.setPosition(width,Hockey.HEIGHT*2/3-button_Mode4.getHeight()/2);
+        button_OK.setPosition(Hockey.WITDH/2-button_OK.getWidth()/2,Hockey.HEIGHT*5/6-button_OK.getHeight()/2);
 
 
 
@@ -48,7 +57,6 @@ public class ModeState extends State implements Screen{
         cam = new OrthographicCamera(Hockey.WITDH, Hockey.HEIGHT);
         cam.setToOrtho(true, Hockey.WITDH, Hockey.HEIGHT);
         batch.setProjectionMatrix(cam.combined);
-        width = cam.viewportWidth/3-button_Mode1.getWidth()/2;
         createBoundsMode1 = new Rectangle(width,cam.viewportHeight/6-button_Mode1.getHeight()/2,
                 button_Mode1.getWidth(), button_Mode1.getHeight());
         createBoundsMode2 = new Rectangle(width,
@@ -60,7 +68,7 @@ public class ModeState extends State implements Screen{
                 button_Mode4.getWidth(), button_Mode4.getHeight());
         createBoundsOK = new Rectangle(cam.viewportWidth/2-button_OK.getWidth()/2,cam.viewportHeight*5/6-button_OK.getHeight()/2,
                 button_OK.getWidth(), button_OK.getHeight());
-        height = cam.viewportHeight;
+
     }
 
     @Override
@@ -84,21 +92,22 @@ public class ModeState extends State implements Screen{
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 if (createBoundsMode1.contains(screenX,screenY)) {
-                    height = cam.viewportHeight/6-button_Mode1.getHeight()/2;
+                    height = Hockey.HEIGHT/6-button_Mode1.getHeight()/2;
                     check = 1;
                 }
                 else if (createBoundsMode2.contains(screenX,screenY)) {
-                    height = cam.viewportHeight/3- button_Mode2.getHeight()/2;
+                    height = Hockey.HEIGHT/3- button_Mode2.getHeight()/2;
                     check = 2;
                 }
                 else if (createBoundsMode3.contains(screenX,screenY)) {
-                    height = cam.viewportHeight/2-button_Mode3.getHeight()/2;
+                    height = Hockey.HEIGHT/2-button_Mode3.getHeight()/2;
                     check = 3;
                 }
                 else if (createBoundsMode4.contains(screenX,screenY)){
-                    height = cam.viewportHeight*2/3-button_Mode4.getHeight()/2;
+                    height = Hockey.HEIGHT*2/3-button_Mode4.getHeight()/2;
                     check = 4;
                 }
+                checkMode.setPosition(Hockey.WITDH*4/5,height);
                 if(createBoundsOK.contains(screenX,screenY)){
                     switch (check){
                         case 1:
@@ -158,12 +167,17 @@ public class ModeState extends State implements Screen{
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(bg,0,0, Hockey.WITDH, Hockey.HEIGHT);
-        sb.draw(checkMode,cam.viewportWidth*4/5,height);
-        sb.draw(button_Mode1,width,cam.viewportHeight/6-button_Mode1.getHeight()/2 );
-        sb.draw(button_Mode2,width,cam.viewportHeight/3-button_Mode2.getHeight()/2);
-        sb.draw(button_Mode3,width,cam.viewportHeight/2-button_Mode3.getHeight()/2);
-        sb.draw(button_Mode4,width,cam.viewportHeight*2/3-button_Mode4.getHeight()/2);
-        sb.draw(button_OK,cam.viewportWidth/2-button_OK.getWidth()/2,cam.viewportHeight*5/6-button_OK.getHeight()/2);
+        button_OK.draw(sb);
+
+
+        button_Mode1.draw(sb);
+        button_Mode2.draw(sb);
+        button_Mode3.draw(sb);
+        button_Mode4.draw(sb);
+
+        if(height!=0){
+            checkMode.draw(sb);
+        }
 
         sb.end();
 
@@ -201,10 +215,7 @@ public class ModeState extends State implements Screen{
     @Override
     public void dispose() {
         bg.dispose();
-        button_Mode1.dispose();
-        button_Mode2.dispose();
-        button_Mode3.dispose();
-        button_Mode4.dispose();
+
     }
 
 }
