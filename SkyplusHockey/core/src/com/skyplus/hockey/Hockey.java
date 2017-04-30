@@ -2,6 +2,7 @@ package com.skyplus.hockey;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -21,6 +22,8 @@ public class Hockey extends Game {
 	public static String PATCH="";
 	SpriteBatch batch;
 	private GameStateManager gms;
+	public static boolean flagCheck = true;
+	public static Sound sound;
 
 
 
@@ -37,6 +40,13 @@ public class Hockey extends Game {
 		PATCH=WITDH+"x"+HEIGHT+"/";
 
 		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Hockey.sound = Gdx.audio.newSound(Gdx.files.internal(Hockey.PATCH+"mysound.mp3"));
+		if(Hockey.flagCheck){
+			Hockey.sound.stop();
+			Hockey.sound.play();
+			Hockey.sound.loop();
+
+		}
 
 		gms.push(new MenuState(gms));
 	}

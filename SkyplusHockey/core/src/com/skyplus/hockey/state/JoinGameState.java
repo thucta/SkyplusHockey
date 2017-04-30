@@ -9,38 +9,30 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
 import com.skyplus.hockey.Hockey;
 
 /**
- * Created by TruongNN on 3/24/2017.
+ * Created by THUC UYEN on 29-Apr-17.
  */
-public class MenuState extends State implements Screen{
+public class JoinGameState extends State implements Screen{
 
 
     private Texture bg;
-    private Texture button_PC;
-    private Texture button_PP;
-    private Texture button_ST;
+    private Texture button_CreateGame,button_JoinGame,button_Exit;
 
-    private Rectangle createBoundsPC , createBoundsPP, createBoundsST;
+    private Rectangle createBoundsCreate , createBoundsJoin, createBoundsExit;
     private OrthographicCamera cam;
     private SpriteBatch batch;
 
 
 
-    public MenuState(GameStateManager gsm) {
+    public JoinGameState(GameStateManager gsm) {
         super(gsm);
-        Gdx.app.log("here","MenuState");
+        Gdx.app.log("here","JoinGameState");
         bg = new Texture(Hockey.PATCH+"backGame.png");
-        button_PC = new Texture(Hockey.PATCH+"buttonPC.png");
-        button_PP = new Texture(Hockey.PATCH+"buttonPP.png");
-        button_ST = new Texture(Hockey.PATCH+"buttonST.png");
-
-
-
-
-
+        button_CreateGame = new Texture(Hockey.PATCH+"buttonCreate.png");
+        button_JoinGame = new Texture(Hockey.PATCH+"buttonJoin.png");
+        button_Exit = new Texture(Hockey.PATCH+"buttonExit.png");
 
 
         batch = new SpriteBatch();
@@ -48,14 +40,14 @@ public class MenuState extends State implements Screen{
         cam.setToOrtho(true, Hockey.WITDH, Hockey.HEIGHT);
         batch.setProjectionMatrix(cam.combined);
 
-        createBoundsPP = new Rectangle(cam.viewportWidth/2-button_PP.getWidth()/2,cam.viewportHeight/2-button_PP.getHeight()*3,
-                button_PP.getWidth(), button_PP.getHeight());
-        createBoundsPC = new Rectangle((cam.viewportWidth - button_PC.getWidth())/2,
-                (cam.viewportHeight/2)-(button_PC.getHeight()/2),
-                button_PC.getWidth(), button_PC.getHeight());
+        createBoundsCreate = new Rectangle(cam.viewportWidth/2-button_CreateGame.getWidth()/2,cam.viewportHeight/2-button_CreateGame.getHeight()*3,
+                button_CreateGame.getWidth(), button_CreateGame.getHeight());
+        createBoundsJoin = new Rectangle((cam.viewportWidth - button_JoinGame.getWidth())/2,
+                (cam.viewportHeight/2)-(button_JoinGame.getHeight()/2),
+                button_JoinGame.getWidth(), button_JoinGame.getHeight());
 
-        createBoundsST = new Rectangle(cam.viewportWidth/2-button_ST.getWidth()/2,cam.viewportHeight/2+button_ST.getHeight()*2,
-                button_ST.getWidth(), button_ST.getHeight());
+        createBoundsExit = new Rectangle(cam.viewportWidth/2-button_Exit.getWidth()/2,cam.viewportHeight/2+button_Exit.getHeight()*2,
+                button_Exit.getWidth(), button_Exit.getHeight());
 
 
 
@@ -81,15 +73,14 @@ public class MenuState extends State implements Screen{
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                if (createBoundsPP.contains(screenX,screenY)) {
-                    gsm.set(new ModeState(gsm));
-                    dispose();
-                }
-                else if (createBoundsPC.contains(screenX,screenY)) {
+                if (createBoundsCreate.contains(screenX,screenY)) {
 
                 }
-                else if (createBoundsST.contains(screenX,screenY)) {
-                    gsm.set(new SettingState(gsm));
+                else if (createBoundsJoin.contains(screenX,screenY)) {
+
+                }
+                else if (createBoundsExit.contains(screenX,screenY)) {
+                    gsm.set(new ModeState(gsm));
                     dispose();
                 }
                 return false;
@@ -129,9 +120,9 @@ public class MenuState extends State implements Screen{
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(bg,0,0, Hockey.WITDH, Hockey.HEIGHT);
-        sb.draw(button_PP,cam.viewportWidth/2-button_PP.getWidth()/2,cam.viewportHeight/2-button_PP.getHeight()*3 );
-        sb.draw(button_PC,cam.viewportWidth/2-button_PC.getWidth()/2,cam.viewportHeight/2-button_PC.getHeight()/2);
-        sb.draw(button_ST,cam.viewportWidth/2-button_ST.getWidth()/2,cam.viewportHeight/2+button_ST.getHeight()*2);
+        sb.draw(button_CreateGame,cam.viewportWidth/2-button_CreateGame.getWidth()/2,cam.viewportHeight/2-button_CreateGame.getHeight()*3 );
+        sb.draw(button_JoinGame,cam.viewportWidth/2-button_JoinGame.getWidth()/2,cam.viewportHeight/2-button_JoinGame.getHeight()/2);
+        sb.draw(button_Exit,cam.viewportWidth/2-button_Exit.getWidth()/2,cam.viewportHeight/2+button_Exit.getHeight()*2);
 
         sb.end();
 
@@ -169,9 +160,9 @@ public class MenuState extends State implements Screen{
     @Override
     public void dispose() {
         bg.dispose();
-        button_PC.dispose();
-        button_PP.dispose();
-        button_ST.dispose();
+        button_CreateGame.dispose();
+        button_JoinGame.dispose();
+        button_Exit.dispose();
     }
 
 }

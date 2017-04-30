@@ -2,10 +2,14 @@ package com.skyplus.hockey.state;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.skyplus.hockey.Hockey;
 import com.skyplus.hockey.config.Config;
@@ -20,12 +24,20 @@ import java.util.Map;
 /**
  * Created by TruongNN  on 3/24/2017.
  */
-public class PlayState extends State {
+public class PlayState extends State implements Screen{
 
     private BackgroundGame background;
     private Pandle pandle_pink;
     private Pandle pandle_green;
     private Puck puck;
+
+    //pause
+    private Texture buttonPause;
+    private Circle boundsPause;
+    private Texture button_Resume,button_NewGame, button_Exit;
+    private Rectangle createBoundsResume,createBoundsNewGame, createBoundsExit;
+    private boolean GAME_PAUSED = false;
+    private Sprite sprite;
 
 
     public static Map<Integer, Sprite> spriteMap;
@@ -34,6 +46,99 @@ public class PlayState extends State {
     public PlayState(GameStateManager gsm) {
         super(gsm);
         initator();
+    }
+
+    @Override
+    public void handleInput() {
+
+        Gdx.input.setInputProcessor(new InputProcessor() {
+
+            @Override
+            public boolean keyDown(int keycode) {
+                return false;
+            }
+
+            @Override
+            public boolean keyUp(int keycode) {
+                return false;
+            }
+
+            @Override
+            public boolean keyTyped(char character) {
+                return false;
+            }
+
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                if(GAME_PAUSED == false) {
+                    if (boundsPause.contains(screenX, screenY) == true) {
+                        pause();
+                    } else {
+                        // Ham di chuyen
+                        move(screenX, screenY);
+
+                    }
+                }else {
+
+                    if (createBoundsResume.contains(screenX, screenY)) {
+                        resume();
+                    }
+                    if(createBoundsNewGame.contains(screenX, screenY)){
+                        gsm.set(new PlayState(gsm));
+                        dispose();
+                    }
+                    if(createBoundsExit.contains(screenX, screenY)){
+                        gsm.set(new MenuState(gsm));
+                        dispose();
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                return false;
+            }
+
+            @Override
+            public boolean touchDragged(int screenX, int screenY, int pointer) {
+
+                // ham di chuyen
+                move(screenX,screenY);
+
+                return false;
+            }
+
+            @Override
+            public boolean mouseMoved(int screenX, int screenY) {
+                return false;
+            }
+
+            @Override
+            public boolean scrolled(int amount) {
+                return false;
+            }
+        });
+
+
+
+        ckeckHit(pandle_green,puck,background);
+        ckeckHit(pandle_pink,puck,background);
+
+    }
+
+
+
+
+    @Override
+    public void update(float dt) {
+        if(!GAME_PAUSED){
+            handleInput();
+            pandle_pink.update(dt);
+            pandle_green.update(dt);
+            puck.update(dt);
+            goalScore();  // kiem tra xem co ghi duoc diem khong
+        }
     }
 
     private void initator() {
@@ -79,76 +184,25 @@ public class PlayState extends State {
         pandle_green = new Pandle(0, 0,new Texture(Hockey.PATCH+"pandle_1.png"),new Texture(Hockey.PATCH+"pandle_l_1.png"),spriteMap);
         pandle_green.setPosition(Hockey.WITDH/2,pandle_green.getHeight());
         puck = new Puck((int) cam.viewportWidth / 2, (int) cam.viewportHeight / 2,background.getMapEdge());
-    }
 
+        //pause
+        buttonPause = new Texture(Hockey.PATCH + "buttonPause.png");
+        boundsPause = new Circle(cam.viewportWidth-buttonPause.getWidth()/2,cam.viewportHeight/2-buttonPause.getHeight()/2,buttonPause.getHeight());
+        button_Resume = new Texture(Hockey.PATCH+"buttonResume.png");
+        button_NewGame = new Texture(Hockey.PATCH+"buttonNewGame.png");
+        button_Exit = new Texture(Hockey.PATCH+"buttonExit.png");
+        createBoundsResume = new Rectangle(cam.viewportWidth/2-button_Resume.getWidth()/2,cam.viewportHeight/2-button_Resume.getHeight()*3,
+                button_Resume.getWidth(), button_Resume.getHeight());
+        createBoundsNewGame = new Rectangle((cam.viewportWidth - button_NewGame.getWidth())/2,
+                (cam.viewportHeight/2)-(button_NewGame.getHeight()/2),
+                button_NewGame.getWidth(), button_NewGame.getHeight());
 
-    @Override
-    public void handleInput() {
-
-        Gdx.input.setInputProcessor(new InputProcessor() {
-
-            @Override
-            public boolean keyDown(int keycode) {
-                return false;
-            }
-
-            @Override
-            public boolean keyUp(int keycode) {
-                return false;
-            }
-
-            @Override
-            public boolean keyTyped(char character) {
-                return false;
-            }
-
-            @Override
-            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                // Ham di chuyen
-                move(screenX,screenY);
-                return false;
-            }
-
-            @Override
-            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                return false;
-            }
-
-            @Override
-            public boolean touchDragged(int screenX, int screenY, int pointer) {
-
-                // ham di chuyen
-                move(screenX,screenY);
-
-                return false;
-            }
-
-            @Override
-            public boolean mouseMoved(int screenX, int screenY) {
-                return false;
-            }
-
-            @Override
-            public boolean scrolled(int amount) {
-                return false;
-            }
-        });
-
-
-
-        ckeckHit(pandle_green,puck,background);
-        ckeckHit(pandle_pink,puck,background);
+        createBoundsExit = new Rectangle(cam.viewportWidth/2-button_Exit.getWidth()/2,cam.viewportHeight/2+button_Exit.getHeight()*2,
+                button_Exit.getWidth(), button_Exit.getHeight());
+        sprite = new Sprite(backgroud.get(Config.BACKGROUND));
 
     }
 
-    @Override
-    public void update(float dt) {
-        handleInput();
-        pandle_pink.update(dt);
-        pandle_green.update(dt);
-        puck.update(dt);
-        goalScore();  // kiem tra xem co ghi duoc diem khong
-    }
 
 
     /*
@@ -158,12 +212,28 @@ public class PlayState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
-        sb.setProjectionMatrix(cam.combined);
-        sb.begin();
-        background.draw(sb,pandle_pink,pandle_green,puck);
-        puck.draw(sb);
-        pandle_pink.draw(sb);
-        pandle_green.draw(sb);
+        if(!GAME_PAUSED){
+            sb.setProjectionMatrix(cam.combined);
+            sb.begin();
+            background.draw(sb,pandle_pink,pandle_green,puck);
+            puck.draw(sb);
+            pandle_pink.draw(sb);
+            pandle_green.draw(sb);
+            sb.draw(buttonPause,cam.viewportWidth- buttonPause.getWidth(),cam.viewportHeight/2-buttonPause.getHeight()/2);
+        }else {
+
+            sb.begin();
+            sprite.setAlpha(0.5f);
+            puck.draw(sb);
+            pandle_pink.draw(sb);
+            pandle_green.draw(sb);
+            sprite.draw(sb);
+
+            sb.draw(button_Resume,cam.viewportWidth/2-button_Resume.getWidth()/2,cam.viewportHeight/2-button_Resume.getHeight()*3);
+            sb.draw(button_NewGame,cam.viewportWidth/2-button_NewGame.getWidth()/2,cam.viewportHeight/2-button_NewGame.getHeight()/2);
+            sb.draw(button_Exit,cam.viewportWidth/2-button_Exit.getWidth()/2,cam.viewportHeight/2+button_Exit.getHeight()*2);
+        }
+
 //        drawScores(sb);
         sb.end();
     }
@@ -252,11 +322,34 @@ public class PlayState extends State {
     }
 
 
+    @Override
+    public void show() {
 
+    }
+
+    @Override
+    public void render(float delta) {
+
+    }
 
     @Override
     public void resize(int width, int height) {
 //       gamePort.update(width,height);
+    }
+
+    @Override
+    public void pause() {
+        GAME_PAUSED = true;
+    }
+
+    @Override
+    public void resume() {
+        GAME_PAUSED = false;
+    }
+
+    @Override
+    public void hide() {
+
     }
 
     @Override
