@@ -21,11 +21,6 @@ public class JoinGameState extends State implements Screen{
     private Texture bg;
     private Sprite button_CreateGame,button_JoinGame,button_Exit;
 
-    private Rectangle createBoundsCreate , createBoundsJoin, createBoundsExit;
-    private OrthographicCamera cam;
-    private SpriteBatch batch;
-
-
 
     public JoinGameState(GameStateManager gsm) {
         super(gsm);
@@ -38,23 +33,6 @@ public class JoinGameState extends State implements Screen{
         button_CreateGame.setPosition(Hockey.WITDH/2-button_CreateGame.getWidth()/2,Hockey.HEIGHT/2-button_CreateGame.getHeight()*3 );
         button_JoinGame.setPosition(Hockey.WITDH/2-button_JoinGame.getWidth()/2,Hockey.HEIGHT/2-button_JoinGame.getHeight()/2);
         button_Exit.setPosition(Hockey.WITDH/2-button_Exit.getWidth()/2,Hockey.HEIGHT/2+button_Exit.getHeight()*2);
-
-
-        batch = new SpriteBatch();
-        cam = new OrthographicCamera(Hockey.WITDH, Hockey.HEIGHT);
-        cam.setToOrtho(true, Hockey.WITDH, Hockey.HEIGHT);
-        batch.setProjectionMatrix(cam.combined);
-
-        createBoundsCreate = new Rectangle(cam.viewportWidth/2-button_CreateGame.getWidth()/2,cam.viewportHeight/2-button_CreateGame.getHeight()*3,
-                button_CreateGame.getWidth(), button_CreateGame.getHeight());
-        createBoundsJoin = new Rectangle((cam.viewportWidth - button_JoinGame.getWidth())/2,
-                (cam.viewportHeight/2)-(button_JoinGame.getHeight()/2),
-                button_JoinGame.getWidth(), button_JoinGame.getHeight());
-
-        createBoundsExit = new Rectangle(cam.viewportWidth/2-button_Exit.getWidth()/2,cam.viewportHeight/2+button_Exit.getHeight()*2,
-                button_Exit.getWidth(), button_Exit.getHeight());
-
-
 
     }
 
@@ -78,13 +56,13 @@ public class JoinGameState extends State implements Screen{
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                if (createBoundsCreate.contains(screenX,screenY)) {
+                if (button_CreateGame.getBoundingRectangle().contains(screenX,screenY)) {
 
                 }
-                else if (createBoundsJoin.contains(screenX,screenY)) {
+                else if (button_JoinGame.getBoundingRectangle().contains(screenX,screenY)) {
 
                 }
-                else if (createBoundsExit.contains(screenX,screenY)) {
+                else if (button_Exit.getBoundingRectangle().contains(screenX,screenY)) {
                     gsm.set(new ModeState(gsm));
                     dispose();
                 }

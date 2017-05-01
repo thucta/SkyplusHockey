@@ -22,9 +22,6 @@ public class MenuState extends State implements Screen{
     private Texture bg;
     private Sprite button_PC,button_PP,button_ST;
 
-    private Rectangle createBoundsPC , createBoundsPP, createBoundsST;
-    private OrthographicCamera cam;
-    private SpriteBatch batch;
 
 
 
@@ -39,25 +36,6 @@ public class MenuState extends State implements Screen{
         button_PP.setPosition(Hockey.WITDH/2-button_PP.getWidth()/2,Hockey.HEIGHT/2-button_PP.getHeight()*3 );
         button_PC.setPosition(Hockey.WITDH/2-button_PC.getWidth()/2,Hockey.HEIGHT/2-button_PC.getHeight()/2);
         button_ST.setPosition(Hockey.WITDH/2-button_ST.getWidth()/2,Hockey.HEIGHT/2+button_ST.getHeight()*2);
-
-
-
-
-
-
-        batch = new SpriteBatch();
-        cam = new OrthographicCamera(Hockey.WITDH, Hockey.HEIGHT);
-        cam.setToOrtho(true, Hockey.WITDH, Hockey.HEIGHT);
-        batch.setProjectionMatrix(cam.combined);
-
-        createBoundsPP = new Rectangle(cam.viewportWidth/2-button_PP.getWidth()/2,cam.viewportHeight/2-button_PP.getHeight()*3,
-                button_PP.getWidth(), button_PP.getHeight());
-        createBoundsPC = new Rectangle((cam.viewportWidth - button_PC.getWidth())/2,
-                (cam.viewportHeight/2)-(button_PC.getHeight()/2),
-                button_PC.getWidth(), button_PC.getHeight());
-
-        createBoundsST = new Rectangle(cam.viewportWidth/2-button_ST.getWidth()/2,cam.viewportHeight/2+button_ST.getHeight()*2,
-                button_ST.getWidth(), button_ST.getHeight());
 
 
 
@@ -83,15 +61,15 @@ public class MenuState extends State implements Screen{
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                if (createBoundsPP.contains(screenX,screenY)) {
+                if (button_PP.getBoundingRectangle().contains(screenX,screenY)) {
                     gsm.set(new PlayPPState(gsm));
                     dispose();
                 }
-                else if (createBoundsPC.contains(screenX,screenY)) {
+                else if (button_PC.getBoundingRectangle().contains(screenX,screenY)) {
                     gsm.set(new ModeState(gsm));
                     dispose();
                 }
-                else if (createBoundsST.contains(screenX,screenY)) {
+                else if (button_ST.getBoundingRectangle().contains(screenX,screenY)) {
                     gsm.set(new SettingState(gsm));
                     dispose();
                 }

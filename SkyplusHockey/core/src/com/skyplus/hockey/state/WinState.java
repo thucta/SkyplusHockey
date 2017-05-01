@@ -21,9 +21,6 @@ public class WinState extends State implements Screen{
     private Texture bg;
     private Sprite button_Again, button_NewGame;
 
-    private Rectangle createBoundsAgain, createBoundsNewGame;
-    private OrthographicCamera cam;
-    private SpriteBatch batch;
 
 
 
@@ -35,22 +32,6 @@ public class WinState extends State implements Screen{
         button_NewGame = new Sprite(new Texture(Hockey.PATCH+"buttonNewGame.png"));
         button_Again.setPosition(Hockey.WITDH/2-button_Again.getWidth()/2,Hockey.HEIGHT/2-button_Again.getHeight()/2);
         button_NewGame.setPosition(Hockey.WITDH/2-button_NewGame.getWidth()/2,Hockey.HEIGHT/2+button_NewGame.getHeight()*2);
-
-
-        batch = new SpriteBatch();
-        cam = new OrthographicCamera(Hockey.WITDH, Hockey.HEIGHT);
-        cam.setToOrtho(true, Hockey.WITDH, Hockey.HEIGHT);
-        batch.setProjectionMatrix(cam.combined);
-
-
-        createBoundsAgain = new Rectangle((cam.viewportWidth - button_Again.getWidth())/2,
-                (cam.viewportHeight/2)-(button_Again.getHeight()/2),
-                button_Again.getWidth(), button_Again.getHeight());
-
-        createBoundsNewGame = new Rectangle(cam.viewportWidth/2-button_NewGame.getWidth()/2,cam.viewportHeight/2+button_NewGame.getHeight()*2,
-                button_NewGame.getWidth(), button_NewGame.getHeight());
-
-
 
     }
 
@@ -74,11 +55,11 @@ public class WinState extends State implements Screen{
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                if (createBoundsAgain.contains(screenX,screenY)) {
+                if (button_Again.getBoundingRectangle().contains(screenX,screenY)) {
                     gsm.set(new ModeState(gsm));
                     dispose();
                 }
-                else if (createBoundsNewGame.contains(screenX,screenY)) {
+                else if (button_NewGame.getBoundingRectangle().contains(screenX,screenY)) {
                     gsm.set(new MenuState(gsm));
                     dispose();
                 }

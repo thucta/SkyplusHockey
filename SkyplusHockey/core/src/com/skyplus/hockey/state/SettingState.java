@@ -18,19 +18,7 @@ import com.skyplus.hockey.Hockey;
 
 public class SettingState extends State implements Screen {
     private Texture bg;
-    private Sprite check;
-    private Sprite uncheck;
-    private Sprite button_ST;
-    private Sprite textSound;
-
-
-
-
-
-    private Rectangle createBoundsCheck,createBoundsST;
-    private OrthographicCamera cam;
-    private SpriteBatch batch;
-
+    private Sprite check, uncheck, button_ST, textSound;
 
     public SettingState(GameStateManager gsm) {
         super(gsm);
@@ -45,18 +33,6 @@ public class SettingState extends State implements Screen {
         button_ST.setPosition(Hockey.WITDH/2-button_ST.getWidth()/2,Hockey.HEIGHT/2+button_ST.getHeight()*2);
         textSound = new Sprite(new Texture(Hockey.PATCH+"soundText.png"));
         textSound.setPosition(Hockey.WITDH/5,Hockey.HEIGHT/2-check.getHeight()/2);
-
-
-        batch = new SpriteBatch();
-        cam = new OrthographicCamera(Hockey.WITDH, Hockey.HEIGHT);
-        cam.setToOrtho(true, Hockey.WITDH, Hockey.HEIGHT);
-        batch.setProjectionMatrix(cam.combined);
-        createBoundsCheck = new Rectangle(cam.viewportWidth*4/5,
-                (cam.viewportHeight/2)-(check.getHeight()/2),
-                check.getWidth(), check.getHeight());
-        createBoundsST = new Rectangle(cam.viewportWidth/2-button_ST.getWidth()/2,cam.viewportHeight/2+button_ST.getHeight()*2,
-                button_ST.getWidth(), button_ST.getHeight());
-
     }
 
     @Override
@@ -79,7 +55,7 @@ public class SettingState extends State implements Screen {
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                if (createBoundsCheck.contains(screenX,screenY)) {
+                if (check.getBoundingRectangle().contains(screenX,screenY)) {
                     if(Hockey.flagCheck) {
                         Hockey.flagCheck = false;
                         Hockey.sound.pause();
@@ -88,7 +64,7 @@ public class SettingState extends State implements Screen {
                         Hockey.sound.play();
                     }
                 }
-                if(createBoundsST.contains(screenX, screenY)){
+                if(button_ST.getBoundingRectangle().contains(screenX, screenY)){
                     gsm.set(new MenuState(gsm));
                     dispose();
                 }
@@ -137,8 +113,6 @@ public class SettingState extends State implements Screen {
             uncheck.draw(sb);
         }
         sb.end();
-
-
     }
 
     @Override

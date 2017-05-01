@@ -22,9 +22,7 @@ public class ModeState extends State implements Screen{
     private Texture bg;
     private Sprite checkMode, button_Mode1, button_Mode2, button_Mode3, button_Mode4, button_OK;
 
-    private Rectangle createBoundsMode1 , createBoundsMode2, createBoundsMode3, createBoundsMode4, createBoundsOK;
-    private OrthographicCamera cam;
-    private SpriteBatch batch;
+
     private float width,height;
     private int check;
 
@@ -50,25 +48,6 @@ public class ModeState extends State implements Screen{
         button_Mode4.setPosition(width,Hockey.HEIGHT*2/3-button_Mode4.getHeight()/2);
         button_OK.setPosition(Hockey.WITDH/2-button_OK.getWidth()/2,Hockey.HEIGHT*5/6-button_OK.getHeight()/2);
 
-
-
-
-        batch = new SpriteBatch();
-        cam = new OrthographicCamera(Hockey.WITDH, Hockey.HEIGHT);
-        cam.setToOrtho(true, Hockey.WITDH, Hockey.HEIGHT);
-        batch.setProjectionMatrix(cam.combined);
-        createBoundsMode1 = new Rectangle(width,cam.viewportHeight/6-button_Mode1.getHeight()/2,
-                button_Mode1.getWidth(), button_Mode1.getHeight());
-        createBoundsMode2 = new Rectangle(width,
-                (cam.viewportHeight/3)-(button_Mode2.getHeight()/2),
-                button_Mode2.getWidth(), button_Mode2.getHeight());
-        createBoundsMode3 = new Rectangle(width,cam.viewportHeight/2-button_Mode3.getHeight()/2,
-                button_Mode3.getWidth(), button_Mode3.getHeight());
-        createBoundsMode4 = new Rectangle(width,cam.viewportHeight*2/3-button_Mode4.getHeight()/2,
-                button_Mode4.getWidth(), button_Mode4.getHeight());
-        createBoundsOK = new Rectangle(cam.viewportWidth/2-button_OK.getWidth()/2,cam.viewportHeight*5/6-button_OK.getHeight()/2,
-                button_OK.getWidth(), button_OK.getHeight());
-
     }
 
     @Override
@@ -91,24 +70,24 @@ public class ModeState extends State implements Screen{
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                if (createBoundsMode1.contains(screenX,screenY)) {
+                if (button_Mode1.getBoundingRectangle().contains(screenX,screenY)) {
                     height = Hockey.HEIGHT/6-button_Mode1.getHeight()/2;
                     check = 1;
                 }
-                else if (createBoundsMode2.contains(screenX,screenY)) {
+                else if (button_Mode2.getBoundingRectangle().contains(screenX,screenY)) {
                     height = Hockey.HEIGHT/3- button_Mode2.getHeight()/2;
                     check = 2;
                 }
-                else if (createBoundsMode3.contains(screenX,screenY)) {
+                else if (button_Mode3.getBoundingRectangle().contains(screenX,screenY)) {
                     height = Hockey.HEIGHT/2-button_Mode3.getHeight()/2;
                     check = 3;
                 }
-                else if (createBoundsMode4.contains(screenX,screenY)){
+                else if (button_Mode4.getBoundingRectangle().contains(screenX,screenY)){
                     height = Hockey.HEIGHT*2/3-button_Mode4.getHeight()/2;
                     check = 4;
                 }
                 checkMode.setPosition(Hockey.WITDH*4/5,height);
-                if(createBoundsOK.contains(screenX,screenY)){
+                if(button_OK.getBoundingRectangle().contains(screenX,screenY)){
                     switch (check){
                         case 1:
                             gsm.set(new PlayState(gsm));

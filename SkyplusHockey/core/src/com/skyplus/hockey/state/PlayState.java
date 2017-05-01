@@ -35,7 +35,6 @@ public class PlayState extends State implements Screen{
     private Texture buttonPause;
     private Circle boundsPause;
     private Sprite button_Resume,button_NewGame, button_Exit;
-    private Rectangle createBoundsResume,createBoundsNewGame, createBoundsExit;
     private boolean GAME_PAUSED = false;
     private Sprite sprite;
 
@@ -80,15 +79,15 @@ public class PlayState extends State implements Screen{
                     }
                 }else {
 
-                    if (createBoundsResume.contains(screenX, screenY)) {
+                    if (button_Resume.getBoundingRectangle().contains(screenX, screenY)) {
                         gsm.set(new WinState(gsm));
                         dispose();
                     }
-                    if(createBoundsNewGame.contains(screenX, screenY)){
+                    if(button_NewGame.getBoundingRectangle().contains(screenX, screenY)){
                         gsm.set(new PlayState(gsm));
                         dispose();
                     }
-                    if(createBoundsExit.contains(screenX, screenY)){
+                    if(button_Exit.getBoundingRectangle().contains(screenX, screenY)){
                         gsm.set(new MenuState(gsm));
                         dispose();
                     }
@@ -200,14 +199,7 @@ public class PlayState extends State implements Screen{
 
 
 
-        createBoundsResume = new Rectangle(cam.viewportWidth/2-button_Resume.getWidth()/2,cam.viewportHeight/2-button_Resume.getHeight()*3,
-                button_Resume.getWidth(), button_Resume.getHeight());
-        createBoundsNewGame = new Rectangle((cam.viewportWidth - button_NewGame.getWidth())/2,
-                (cam.viewportHeight/2)-(button_NewGame.getHeight()/2),
-                button_NewGame.getWidth(), button_NewGame.getHeight());
 
-        createBoundsExit = new Rectangle(cam.viewportWidth/2-button_Exit.getWidth()/2,cam.viewportHeight/2+button_Exit.getHeight()*2,
-                button_Exit.getWidth(), button_Exit.getHeight());
         sprite = new Sprite(backgroud.get(Config.BACKGROUND));
 
     }

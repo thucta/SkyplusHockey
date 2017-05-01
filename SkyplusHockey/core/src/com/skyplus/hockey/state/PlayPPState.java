@@ -20,13 +20,7 @@ public class PlayPPState extends State implements Screen{
 
     private Texture bg;
     private Sprite button_Local,button_Bluetooth;
-
-    private Rectangle createBoundsLoacal, createBoundsBluetooth;
-    private OrthographicCamera cam;
-    private SpriteBatch batch;
-
-
-
+    
     public PlayPPState(GameStateManager gsm) {
         super(gsm);
         Gdx.app.log("here","MenuState");
@@ -36,26 +30,6 @@ public class PlayPPState extends State implements Screen{
 
         button_Local.setPosition(Hockey.WITDH/2-button_Local.getWidth()/2,Hockey.HEIGHT/3-button_Local.getHeight()/2);
         button_Bluetooth.setPosition(Hockey.WITDH/2-button_Bluetooth.getWidth()/2,Hockey.HEIGHT*2/3-button_Bluetooth.getHeight()/2);
-
-
-
-
-
-
-        batch = new SpriteBatch();
-        cam = new OrthographicCamera(Hockey.WITDH, Hockey.HEIGHT);
-        cam.setToOrtho(true, Hockey.WITDH, Hockey.HEIGHT);
-        batch.setProjectionMatrix(cam.combined);
-
-
-        createBoundsLoacal = new Rectangle((cam.viewportWidth - button_Local.getWidth())/2,
-                (cam.viewportHeight/3)-(button_Local.getHeight()/2),
-                button_Local.getWidth(), button_Local.getHeight());
-
-        createBoundsBluetooth = new Rectangle(cam.viewportWidth/2-button_Bluetooth.getWidth()/2,cam.viewportHeight*2/3-button_Bluetooth.getHeight()/2,
-                button_Bluetooth.getWidth(), button_Bluetooth.getHeight());
-
-
 
     }
 
@@ -79,11 +53,11 @@ public class PlayPPState extends State implements Screen{
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                if (createBoundsLoacal.contains(screenX,screenY)) {
+                if (button_Local.getBoundingRectangle().contains(screenX,screenY)) {
                     gsm.set(new ModeState(gsm));
                     dispose();
                 }
-                else if (createBoundsBluetooth.contains(screenX,screenY)) {
+                else if (button_Bluetooth.getBoundingRectangle().contains(screenX,screenY)) {
                     gsm.set(new JoinGameState(gsm));
                     dispose();
                 }
