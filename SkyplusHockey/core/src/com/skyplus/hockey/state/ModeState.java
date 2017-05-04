@@ -22,7 +22,6 @@ public class ModeState extends State implements Screen{
     private Texture bg;
     private Sprite checkMode, button_Mode1, button_Mode2, button_Mode3, button_Mode4, button_OK;
 
-
     private float width,height;
     private int check;
 
@@ -47,6 +46,10 @@ public class ModeState extends State implements Screen{
         button_Mode3.setPosition(width,Hockey.HEIGHT/2-button_Mode3.getHeight()/2);
         button_Mode4.setPosition(width,Hockey.HEIGHT*2/3-button_Mode4.getHeight()/2);
         button_OK.setPosition(Hockey.WITDH/2-button_OK.getWidth()/2,Hockey.HEIGHT*5/6-button_OK.getHeight()/2);
+
+
+
+
 
     }
 
@@ -141,14 +144,10 @@ public class ModeState extends State implements Screen{
 
     @Override
     public void render(SpriteBatch sb) {
-        Gdx.gl.glClearColor(0,0,0.2f,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(bg,0,0, Hockey.WITDH, Hockey.HEIGHT);
         button_OK.draw(sb);
-
-
         button_Mode1.draw(sb);
         button_Mode2.draw(sb);
         button_Mode3.draw(sb);

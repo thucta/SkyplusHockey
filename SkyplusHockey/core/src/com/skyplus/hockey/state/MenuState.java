@@ -4,40 +4,30 @@ package com.skyplus.hockey.state;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
 import com.skyplus.hockey.Hockey;
 
 /**
  * Created by TruongNN on 3/24/2017.
  */
-public class MenuState extends State implements Screen{
+public class MenuState extends State implements Screen {
 
 
     private Texture bg;
-    private Sprite button_PC,button_PP,button_ST;
-
-
-
+    private Sprite button_PC, button_PP, button_ST;
 
     public MenuState(GameStateManager gsm) {
         super(gsm);
-        Gdx.app.log("here","MenuState");
-        bg = new Texture(Hockey.PATCH+"backGame.png");
-        button_PC = new Sprite(new Texture(Hockey.PATCH+"buttonPC.png"));
-        button_PP = new Sprite(new Texture(Hockey.PATCH+"buttonPP.png"));
-        button_ST = new Sprite(new Texture(Hockey.PATCH+"buttonST.png"));
+        bg = new Texture(Hockey.PATCH + "backGame.png");
+        button_PC = new Sprite(new Texture(Hockey.PATCH + "buttonPC.png"));
+        button_PP = new Sprite(new Texture(Hockey.PATCH + "buttonPP.png"));
+        button_ST = new Sprite(new Texture(Hockey.PATCH + "buttonST.png"));
 
-        button_PP.setPosition(Hockey.WITDH/2-button_PP.getWidth()/2,Hockey.HEIGHT/2-button_PP.getHeight()*3 );
-        button_PC.setPosition(Hockey.WITDH/2-button_PC.getWidth()/2,Hockey.HEIGHT/2-button_PC.getHeight()/2);
-        button_ST.setPosition(Hockey.WITDH/2-button_ST.getWidth()/2,Hockey.HEIGHT/2+button_ST.getHeight()*2);
-
-
+        button_PP.setPosition(Hockey.WITDH / 2 - button_PP.getWidth() / 2, Hockey.HEIGHT / 2 - button_PP.getHeight() * 3);
+        button_PC.setPosition(Hockey.WITDH / 2 - button_PC.getWidth() / 2, Hockey.HEIGHT / 2 - button_PC.getHeight() / 2);
+        button_ST.setPosition(Hockey.WITDH / 2 - button_ST.getWidth() / 2, Hockey.HEIGHT / 2 + button_ST.getHeight() * 2);
 
     }
 
@@ -61,18 +51,9 @@ public class MenuState extends State implements Screen{
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                if (button_PP.getBoundingRectangle().contains(screenX,screenY)) {
-                    gsm.set(new PlayPPState(gsm));
-                    dispose();
-                }
-                else if (button_PC.getBoundingRectangle().contains(screenX,screenY)) {
-                    gsm.set(new ModeState(gsm));
-                    dispose();
-                }
-                else if (button_ST.getBoundingRectangle().contains(screenX,screenY)) {
-                    gsm.set(new SettingState(gsm));
-                    dispose();
-                }
+
+                clickButton(screenX, screenY);
+
                 return false;
             }
 
@@ -98,6 +79,20 @@ public class MenuState extends State implements Screen{
         });
     }
 
+
+    private void clickButton(int screenX, int screenY) {
+        if (button_PP.getBoundingRectangle().contains(screenX, screenY)) {
+            gsm.set(new PlayPPState(gsm));
+            dispose();
+        } else if (button_PC.getBoundingRectangle().contains(screenX, screenY)) {
+            gsm.set(new ModeState(gsm));
+            dispose();
+        } else if (button_ST.getBoundingRectangle().contains(screenX, screenY)) {
+            gsm.set(new SettingState(gsm));
+            dispose();
+        }
+    }
+
     @Override
     public void update(float dt) {
         handleInput();
@@ -105,11 +100,9 @@ public class MenuState extends State implements Screen{
 
     @Override
     public void render(SpriteBatch sb) {
-        Gdx.gl.glClearColor(0,0,0.2f,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
-        sb.draw(bg,0,0, Hockey.WITDH, Hockey.HEIGHT);
+        sb.draw(bg, 0, 0, Hockey.WITDH, Hockey.HEIGHT);
         button_PP.draw(sb);
         button_ST.draw(sb);
         button_PC.draw(sb);

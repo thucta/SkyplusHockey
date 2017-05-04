@@ -1,11 +1,16 @@
 package com.skyplus.hockey.config;
 
+import com.badlogic.gdx.math.Vector2;
+
 /**
  * Created by NVTT on 4/22/2017.
  *
  */
 
 public class Config {
+
+    public static Vector2 SCREEN_MAIN = new Vector2(480,800);
+
 
     public static String BACKGROUND = "bg";
 
@@ -28,6 +33,10 @@ public class Config {
     public static String EDGE_BOTTOM_RIGHT_LIGHT = "bg_b_r_l";
     public static String EDGE_BOTTOM_LEFT = "bg_b_l";
     public static String EDGE_BOTTOM_LEFT_LIGHT = "bg_b_l_l";
+
+    public static int PORT = 5500;
+    public static int PORT_2= 55022;
+    public static final String IP_GROUP = "230.10.10.10";
 
 
 }

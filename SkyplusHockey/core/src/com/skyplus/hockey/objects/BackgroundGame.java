@@ -65,22 +65,22 @@ public class BackgroundGame {
                 edge.setBody(edge.getBody_dark());
 
             }
-            if(Intersector.overlaps(pandle_pink.getBounds(), edge.getBound())) {   //  vam cham voi pandel
-                edge.setBody(edge.getBody_light());
-                edge.setTimer(System.currentTimeMillis());
-                pandle_pink.setBody(pandle_pink.getBody_light());
-            }
-            if( Intersector.overlaps(pandle_green.getBounds(),edge.getBound())){
-                pandle_green.setBody(pandle_green.getBody_light());
-                edge.setBody(edge.getBody_light());
-                edge.setTimer(System.currentTimeMillis());
-
-            }
-            if (Intersector.overlaps(puck.getBounds(),edge.getBound())){
-                edge.setBody(edge.getBody_light());
-                edge.setTimer(System.currentTimeMillis());
-
-            }
+//            if(Intersector.overlaps(pandle_pink.getBounds(), edge.getBound())) {   //  vam cham voi pandel
+//                edge.setBody(edge.getBody_light());
+//                edge.setTimer(System.currentTimeMillis());
+//                pandle_pink.setBody(pandle_pink.getBody_light());
+//            }
+//            if( Intersector.overlaps(pandle_green.getBounds(),edge.getBound())){
+//                pandle_green.setBody(pandle_green.getBody_light());
+//                edge.setBody(edge.getBody_light());
+//                edge.setTimer(System.currentTimeMillis());
+//
+//            }
+//            if (Intersector.overlaps(puck.getBounds(),edge.getBound())){
+//                edge.setBody(edge.getBody_light());
+//                edge.setTimer(System.currentTimeMillis());
+//
+//            }
 
             edge.draw(sb);
 
@@ -128,7 +128,7 @@ public class BackgroundGame {
         // ham set body sang toi, neu flagLigh  = true nghia la sang, co vat va cham nguoc lai khong
         public void setBody(Texture body) {
 
-
+            setTimer(System.currentTimeMillis());
             this.body.setRegion(body);
         }
 
@@ -136,7 +136,8 @@ public class BackgroundGame {
             return body_dark;
         }
 
-        public void setBody_dark(Texture body_dark) {
+        public void setBody_dark() {
+            this.body.setRegion( this.body_dark); ;
             this.body_dark = body_dark;
         }
 
@@ -144,8 +145,9 @@ public class BackgroundGame {
             return body_light;
         }
 
-        public void setBody_light(Texture body_light) {
-            this.body_light = body_light;
+        public void setBody_light() {
+            setTimer(System.currentTimeMillis());
+            this.body.setRegion(this.body_light);
         }
         public Rectangle getBound() {
 
@@ -154,6 +156,7 @@ public class BackgroundGame {
         public float getWitdh() {
             return body.getWidth();
         }
+
         public float getHeight() {
             return body.getHeight();
         }

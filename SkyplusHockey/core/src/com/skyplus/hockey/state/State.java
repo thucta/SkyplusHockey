@@ -12,14 +12,10 @@ import com.skyplus.hockey.Hockey;
 public abstract class State {
     protected GameStateManager gsm;
     protected OrthographicCamera cam;
-    protected Viewport gamePort;
-    protected Vector3 mouse;
 
     protected State(GameStateManager gsm){
         this.gsm = gsm;
         cam = new OrthographicCamera();
-//        cam.translate(cam.viewportWidth/2,cam.viewportHeight/2);
-//        gamePort = new FillViewport(480,800,cam);
         cam.setToOrtho(true, Hockey.WITDH, Hockey.HEIGHT);
     }
 

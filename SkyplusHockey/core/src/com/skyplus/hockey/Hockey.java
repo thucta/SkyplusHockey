@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.skyplus.hockey.objects.DeviceAPI;
 import com.skyplus.hockey.state.GameStateManager;
 import com.skyplus.hockey.state.MenuState;
 
@@ -20,12 +21,18 @@ public class Hockey extends Game {
 	public static  int HEIGHT = 0;
 	public static  String TITLE = "Skys Hockey";
 	public static String PATCH="";
-	SpriteBatch batch;
+	public  SpriteBatch batch;
 	private GameStateManager gms;
 	public static boolean flagCheck = false;
 	public static Sound sound;
+	public static  DeviceAPI deviceAPI;
 
+	public Hockey(DeviceAPI deviceAPI){
+		this.deviceAPI = deviceAPI;
+	}
+	public Hockey(){
 
+	}
 
 
 	@Override
@@ -40,14 +47,6 @@ public class Hockey extends Game {
 		PATCH=WITDH+"x"+HEIGHT+"/";
 
 		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Hockey.sound = Gdx.audio.newSound(Gdx.files.internal(Hockey.PATCH+"mysound.mp3"));
-		if(Hockey.flagCheck){
-			Hockey.sound.stop();
-			Hockey.sound.play();
-			Hockey.sound.loop();
-
-		}
-
 		gms.push(new MenuState(gms));
 	}
 
