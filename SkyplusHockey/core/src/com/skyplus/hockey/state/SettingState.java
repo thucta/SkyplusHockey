@@ -105,11 +105,15 @@ public class SettingState extends State implements Screen {
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(bg,0,0, Hockey.WITDH, Hockey.HEIGHT);
+        button_ST.setFlip(false,true);
         button_ST.draw(sb);
+        textSound.setFlip(false,true);
         textSound.draw(sb);
         if(Hockey.flagCheck){
+            check.setFlip(false,true);
             check.draw(sb);
         }else {
+            uncheck.setFlip(false,true);
             uncheck.draw(sb);
         }
         sb.end();
